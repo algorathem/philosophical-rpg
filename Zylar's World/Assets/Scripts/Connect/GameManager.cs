@@ -19,6 +19,9 @@ public class FlowPuzzle : MonoBehaviour
     private List<Vector2Int> currentPath; // Current path being drawn
     private Camera mainCamera;
 
+    [SerializeField] private AudioClip soundBeep;
+    [SerializeField] private AudioClip soundBoom;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -115,7 +118,7 @@ public class FlowPuzzle : MonoBehaviour
     void PlaceDot(Color color, Vector2Int position)
     {
         GameObject dot = Instantiate(dotPrefab, transform);
-        dot.transform.position = grid[position.x, position.y].position;
+        dot.transform.position = grid[position.x, position.y].position + new Vector3(0, 0, -0.1f); ;
         dot.GetComponent<SpriteRenderer>().color = color;
     }
 
@@ -211,6 +214,7 @@ public class FlowPuzzle : MonoBehaviour
             Vector3 position = grid[currentPath[i].x, currentPath[i].y].position;
             line.SetPosition(i, position);
         }
+        SoundFXManager.instance.PlaySoundFXClip(soundBeep, transform, 1f);
 
         // Mark the cell as occupied
         cellOccupied[cellPosition.x, cellPosition.y] = true;
@@ -283,6 +287,7 @@ public class FlowPuzzle : MonoBehaviour
                 return; // Not all pairs are completed
             }
         }
+        SoundFXManager.instance.PlaySoundFXClip(soundBoom, transform, 1f);
 
         Debug.Log("You win!");
     }
