@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class MainMenuController : MonoBehaviour
@@ -12,7 +13,7 @@ public class MainMenuController : MonoBehaviour
     public CanvasGroup logoGroup;  // Reference to the logo's CanvasGroup component
     public CanvasGroup menuGroup;  // Reference to the menu's CanvasGroup component
     public CanvasGroup settingsGroup;  // Reference to the settings menu's CanvasGroup component
-
+    public CanvasGroup loadingGroup;  // Reference to the loading screen's CanvasGroup component
 
     // Start is called before the first frame update
     void Start()
@@ -105,6 +106,27 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void OnStartButtonClicked()
+    {
+        // Set the interactability of the menu to false
+        menuGroup.blocksRaycasts = false;
 
+        // Start sequence to fade out the menu and fade in the loading screen
+        Sequence startToLoadingSequence = DOTween.Sequence();
+
+        // Fade out the menu
+        startToLoadingSequence.Append(mainMenuGroup.DOFade(0f, fadeTime).SetEase(Ease.InOutQuad));
+
+        // Fade in the loading screen
+        startToLoadingSequence.Append(loadingGroup.DOFade(1f, fadeTime).SetEase(Ease.InOutQuad));
+
+        // Add delay to simulate loading
+        startToLoadingSequence.AppendInterval(2f).OnComplete(() =>
+        {
+            // Load the game scene
+            SceneManager.LoadScene(1);
+        });
+
+    }
 
 }
