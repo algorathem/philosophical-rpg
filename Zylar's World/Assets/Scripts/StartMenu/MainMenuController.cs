@@ -13,16 +13,13 @@ public class MainMenuController : MonoBehaviour
     public CanvasGroup menuGroup;  // Reference to the menu's CanvasGroup component
     public CanvasGroup settingsGroup;  // Reference to the settings menu's CanvasGroup component
 
-    public bool IsMenuInteractable;  // Flag to check if the start menu is interactable
-    public bool IsSettingsInteractable;  // Flag to check if the settings menu is interactable
-
 
     // Start is called before the first frame update
     void Start()
     {
         // Set the interactability of the menu to false
-        IsMenuInteractable = false;
-        IsSettingsInteractable = false;
+        menuGroup.blocksRaycasts = false;
+        settingsGroup.blocksRaycasts = false;
 
         // Start the fade in sequence
         StartFadeIn();
@@ -49,7 +46,7 @@ public class MainMenuController : MonoBehaviour
         fadeInSequence.Append(menuGroup.DOFade(0f, fadeTime).From().SetEase(Ease.InOutQuad).OnComplete(() =>
         {
             // Set the interactability of the menu to true
-            IsMenuInteractable = true;
+            menuGroup.blocksRaycasts = true;
         }));
 
         // Play the fade in sequence
@@ -59,10 +56,10 @@ public class MainMenuController : MonoBehaviour
     public void OnSettingsButtonClicked()
     {
         // Check if the settings menu is interactable
-        if (IsMenuInteractable)
+        if (menuGroup.blocksRaycasts)
         {
             // Set the interactability of the menu to false
-            IsMenuInteractable = false;
+            menuGroup.blocksRaycasts = false;
 
             // Start sequence to fade out the menu and fade in the settings menu
             Sequence startToSettingsSequence = DOTween.Sequence();
@@ -74,11 +71,37 @@ public class MainMenuController : MonoBehaviour
             startToSettingsSequence.Append(settingsGroup.DOFade(1f, fadeTime).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
                 // Set the interactability of the settings menu to true
-                IsSettingsInteractable = true;
+                settingsGroup.blocksRaycasts = true;
             }));
 
             // Play the sequence
             startToSettingsSequence.Play();
+        }
+    }
+
+    public void OnSettingsBackButtonClicked()
+    {
+        // Check if the settings menu is interactable
+        if (settingsGroup.blocksRaycasts)
+        {
+            // Set the interactability of the settings menu to false
+            settingsGroup.blocksRaycasts = false;
+
+            // Start sequence to fade out the settings menu and fade in the main menu
+            Sequence settingsToStartSequence = DOTween.Sequence();
+
+            // Fade out the settings menu
+            settingsToStartSequence.Append(settingsGroup.DOFade(0f, fadeTime).SetEase(Ease.InOutQuad));
+
+            // Fade in the main menu
+            settingsToStartSequence.Append(mainMenuGroup.DOFade(1f, fadeTime).SetEase(Ease.InOutQuad).OnComplete(() =>
+            {
+                // Set the interactability of the main menu to true
+                menuGroup.blocksRaycasts = true;
+            }));
+
+            // Play the sequence
+            settingsToStartSequence.Play();
         }
     }
 

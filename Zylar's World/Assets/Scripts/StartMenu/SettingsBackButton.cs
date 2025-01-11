@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SettingsButton : MonoBehaviour, IPointerClickHandler
+public class SettingsBackButton : MonoBehaviour, IPointerClickHandler
 {
     private MainMenuController mainMenuController;  // Reference to the MainMenuController
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,7 @@ public class SettingsButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        mainMenuController.OnSettingsButtonClicked();
+        mainMenuController.OnSettingsBackButtonClicked();
 
     }
-
 }

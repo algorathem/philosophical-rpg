@@ -12,12 +12,12 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private AudioClip hoverClip;  // Sound effect to play when the button is hovered over
 
     private Vector3 originalScale;  // Original scale of the button
-    private MainMenuController mainMenuController;  // Reference to the MainMenuController
+
 
     // Start is called before the first frame update
     void Start()
     {
-        mainMenuController = FindObjectOfType<MainMenuController>();  // Find the MainMenuController
+
 
         originalScale = transform.localScale;  // Store the original scale of the button
     }
@@ -25,12 +25,11 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Check if menu is interactable from MainMenuController before playing the hover sound effect
-        if (mainMenuController != null && mainMenuController.IsMenuInteractable)
-        {
-            // Play the hover sound effect
-            SFXManager.instance.PlaySFXClip(hoverClip, transform, hoverVolume);
-        }
+
+
+        // Play the hover sound effect
+        SFXManager.instance.PlaySFXClip(hoverClip, transform, hoverVolume);
+
 
         // Scale up the button
         transform.DOScale(originalScale * scaleFactor, scaleTime).SetEase(Ease.OutBack);
@@ -38,6 +37,7 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+
         // Scale down the button
         transform.DOScale(originalScale, scaleTime).SetEase(Ease.OutBack);
     }
