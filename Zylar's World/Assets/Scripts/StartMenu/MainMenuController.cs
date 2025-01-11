@@ -14,6 +14,7 @@ public class MainMenuController : MonoBehaviour
     public CanvasGroup menuGroup;  // Reference to the menu's CanvasGroup component
     public CanvasGroup settingsGroup;  // Reference to the settings menu's CanvasGroup component
     public CanvasGroup loadingGroup;  // Reference to the loading screen's CanvasGroup component
+    public CanvasGroup audioGroup;  // Reference to the audio settings menu's CanvasGroup component
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class MainMenuController : MonoBehaviour
         // Set the interactability of the menu to false
         menuGroup.blocksRaycasts = false;
         settingsGroup.blocksRaycasts = false;
+        audioGroup.blocksRaycasts = false;
 
         // Start the fade in sequence
         StartFadeIn();
@@ -106,6 +108,58 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void OnSettingsAudioButtonClicked()
+    {
+        // Check if the settings menu is interactable
+        if (settingsGroup.blocksRaycasts)
+        {
+            // Set the interactability of the settings menu to false
+            settingsGroup.blocksRaycasts = false;
+
+            // Start sequence to fade out the settings menu and fade in the audio settings menu
+            Sequence settingsToAudioSequence = DOTween.Sequence();
+
+            // Fade out the settings menu
+            settingsToAudioSequence.Append(settingsGroup.DOFade(0f, fadeTime).SetEase(Ease.InOutQuad));
+
+            // Fade in the audio settings menu
+            settingsToAudioSequence.Append(audioGroup.DOFade(1f, fadeTime).SetEase(Ease.InOutQuad).OnComplete(() =>
+            {
+                // Set the interactability of the audio settings menu to true
+                audioGroup.blocksRaycasts = true;
+            }));
+
+            // Play the sequence
+            settingsToAudioSequence.Play();
+        }
+    }
+
+    public void OnAudioBackButtonClicked()
+    {
+        // Check if the audio settings menu is interactable
+        if (audioGroup.blocksRaycasts)
+        {
+            // Set the interactability of the audio settings menu to false
+            audioGroup.blocksRaycasts = false;
+
+            // Start sequence to fade out the audio settings menu and fade in the settings menu
+            Sequence audioToSettingsSequence = DOTween.Sequence();
+
+            // Fade out the audio settings menu
+            audioToSettingsSequence.Append(audioGroup.DOFade(0f, fadeTime).SetEase(Ease.InOutQuad));
+
+            // Fade in the settings menu
+            audioToSettingsSequence.Append(settingsGroup.DOFade(1f, fadeTime).SetEase(Ease.InOutQuad).OnComplete(() =>
+            {
+                // Set the interactability of the settings menu to true
+                settingsGroup.blocksRaycasts = true;
+            }));
+
+            // Play the sequence
+            audioToSettingsSequence.Play();
+        }
+    }
+
     public void OnStartButtonClicked()
     {
         // Set the interactability of the menu to false
@@ -128,5 +182,7 @@ public class MainMenuController : MonoBehaviour
         });
 
     }
+
+
 
 }
