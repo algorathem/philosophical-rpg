@@ -1,0 +1,487 @@
+:: StoryTitle
+Zylar's World
+
+
+:: StoryData
+{
+  "ifid": "7E868C3A-539E-4CE3-B964-7CCFB4E7261A",
+  "format": "Twison",
+  "format-version": "0.0.1",
+  "start": "ch1_001",
+  "zoom": 0.6
+}
+
+
+:: \ Ending1 {"position":"275,800","size":"100,100"}
+(align:"=><=")+(box:"X=")[GAME OVER]
+
+Scientists fail to recognize Zylar as an intelligent being, mistaking them for a mutated animal. They perish in the experiments, their potential never realized.
+
+(align:"=><=")+(box:"X=")[''An Abruptly Ended Journey'']
+
+
+:: \ Set Access Card {"position":"225,1500","size":"100,100"}
+
+Zylar takes the access card and place it securely with you.
+
+- Take the access card
+- unlock Inventory
+
+(set: $accessCard to true)
+
+Inventory: (if: $accessCard is true)[Access Card] (else:)[Empty]
+
+[[Go to the door |Door]]
+
+
+
+:: \ ch2_002 {"position":"600,325","size":"100,100"}
+As Zylar ascends the marble steps, they hear a heated argument ahead. Two figures stand on opposite sides of a massive gap in the stairs. Broken marble fragments float in the void between them, shifting erratically—some spinning slowly, others darting unpredictably.
+
+Heraclitus, standing on one side, gestures passionately toward the moving fragments. His energy is palpable, his eyes alight with fervor. On the other side, Parmenides stands calm and stoic, rooted firmly on a solid piece of unbroken marble.
+
+**Heraclitus:**: "Look! Even these steps change and move! All things are in motion; nothing stays the same!"
+
+**Parmenides:**: "Nonsense. The true reality lies in the unchanging. These fragments are mere illusions, distracting from the eternal."
+
+They turn to Zylar, addressing them as an impartial observer.
+
+**Heraclitus:**: "You! You’ve come from a faraway world. Surely you understand that life is flux, motion, and becoming! Help me prove it to this stubborn philosopher"
+
+**Parmenides:**: "Alien, do not be misled by appearances. Seek the truth in what is constant and unchanging. True understanding lies in the eternal."
+
+[[Step forward|Puzzle Start]]
+
+
+:: \ end of chapter 2 {"position":"600,2100","size":"100,100"}
+As Zylar places the last object, the fire in the lantern ignites fully, and the cavern illuminates in a brilliant burst of light. The shadows recede, revealing a hidden exit from the cave. Zylar, now with the fire torch in hand, steps forward into the light, having learned the distinction between illusions and reality.
+
+
+
+:: Calculation result. {"position":"100,450","size":"100,100"}
+(align:"=><=")+(box:"X=")[''All calculation failed.'']
+
+For … the second time(technically speaking, the first time is when their ship collapsed) in their perfectly predictable life, the variables refuse to align. Too little information on this completely foreign environment, too much unknown. The only certain fact is that they are imprisoned. 
+
+Through the glass walls, shadowy figures observe them, their alien movements and language indecipherable. The weight of their stares feels… invasive.
+
+[[Ruminate]]
+
+
+:: Check Fixed Fragment {"position":"475,725","size":"100,100"}
+Zylar step onto a stable fragment of marble. It holds firm beneath your weight.
+
+(Track Progress)
+(set: $progress to $progress + 1)
+
+(if: $progress is 5)[
+   You’ve reached the other side! [[Continue|Success]]
+]
+(else:)[
+   [[Choose your next move|Start]]
+]
+
+
+
+:: Check Floating Fragment {"position":"600,725","size":"100,100"}
+You leap onto a floating fragment. It shifts wildly beneath you, but you manage to hold your balance.
+
+(Track Progress)
+(set: $progress to $progress + 1)
+
+(if: $progress is 5)[
+   You’ve reached the other side! [[Continue|Success]]
+]
+
+(else-if: $floatFragment is false)[
+The fragment beneath Zylar's feet disappears, and them fall into the void. Zylar awakens back at the edge of the gap, the Immortal’s voice urging them to try again.
+(set: $progress to 0)
+[[Restart the puzzle|Start]]
+]
+
+(else:)[
+   [[Choose your next move|Start]]
+]
+
+
+
+:: Dialogue 01 {"position":"100,825","size":"100,100"}
+(???): //"I want nothing. It is you who must decide what you want. Stay here, clinging to your malfunctioning logic, imprisoned by what you think you know. Or embrace the unknown, escape this place, and dive into the chaos beyond."//
+
+[[Remain -> Ending1]]
+[[Embrace the unknown]]
+
+
+:: Door {"position":"100,1625","size":"100,100"}
+Zylar approach the locked door. A scanner flashes, waiting for a key.
+
+(if: $accessCard is true)[
+   Zylar swipes the access card, and the door clicks open.
+   [[Open the door|Enter the Ancient Philosophy era.]]
+]
+(else:)[
+   The scanner flashes red. Zylar doesn't have what’s needed to unlock this door.
+   [[Go Back|Room]]
+]
+
+
+
+
+:: Embrace the unknown {"position":"100,975","size":"100,100"}
+(???) becomes (Immortal)
+
+Immortal: //"You made the right choice. But if you wish to survive, you must first communicate with those humans. Communication is the key to connection and understanding."//
+
+Immortal: //"Although you cannot produce their sounds, there is one method that both sides will understand. A pattern. Use the table. Let them hear your mind through your movements." // 
+
+(align:"=><=")+(box:"X=")[//"Three short, three long, three short. A cry for help transcends all language."//]
+
+
+[[Morse Code Puzzle]]
+
+(set: $failures to 0)
+
+
+:: Empedocles' puzzle {"position":"600,1350","size":"100,100"}
+*(The player sees glowing orbs appear in the air, representing "dots" of light. Empedocles gestures to the orbs.)*  
+
+**Empedocles**:  
+"These dots represent Zeno’s divisions, the endless halfway points he claimed made motion impossible. You must connect them, but beware—**you cannot let the lines cross.** For in life, as in philosophy, there is order in motion."  
+
+*(The player begins solving the puzzle, connecting the dots without crossing the lines. As the puzzle progresses, the lines form swirling shapes, echoing the motion of the elements.)*  
+
+**Empedocles** (narrating during the puzzle):  
+"Zeno misunderstood motion. He thought it was the crossing of fixed points. But motion is not about discrete steps—it is the **continuity of change**, the transformation of forces. The lines you draw represent the dynamic interplay of the elements, not isolated tasks."  
+
+[[find the balance of the elements |next]]
+
+
+:: End of Tutorial2 {"position":"600,1725","size":"100,100"}
+some takeaways from tutorial 2
+
+[[Plato's Cave]]
+
+
+:: Enter Zeno's puzzle {"position":"600,1100","size":"100,100"}
+Zylar refused to take the step:” it is meaningless. Zeno’s logic is correct, if you keep dividing the distance in half, there is no way you can reach the end. Why start an endless journey and try to chase something that you can never reach when you already know you can’t.” 
+
+Lead to a different option:
+the stairs starts to disappear behind Zylar, if they stay at the same spot, they will fall of the map.
+→ shows that steps are never discrete, things are dynamic and the most important thing is keep moving forward to try to break the cycle/loop.
+→"Zeno misunderstood motion. He thought it was the crossing of fixed points. But motion is not about discrete steps—it is the **continuity of change**,
+
+[[end of puzzle]]
+
+
+:: Enter the Ancient Philosophy era. {"position":"300,1700","size":"100,100"}
+Zylar unlocks the last door of the underground lab. 
+
+As Zylar steps through the final door, the sterile laboratory fades into a surreal dreamscape. Marble steps stretch infinitely, bathed in a golden light, signaling the beginning of the ''Ancient Philosophy Era''.
+
+[[ch2_001]]
+
+
+:: Failure Node {"position":"225,1200","size":"100,100"}
+(set: $failures to $failures + 1)
+
+The tapping echoes through the room, but nothing happens.
+
+(if: $failures is 1)[
+    The Immortal's voice echoes faintly: "A cry for help. Try tapping SOS." 
+]
+(elseif: $failures is 2)[
+    The Immortal sounds almost impatient: "Think in patterns! Three short. Three long. Three short." 
+]
+(else:)[
+    The Immortal sighs. "Three taps. Three pauses. Three taps. Try again."
+]
+
+[[Try Again|Morse Code Puzzle]]
+
+
+:: Morse Code Puzzle {"position":"100,1100","size":"100,100"}
+You must tap the correct pattern to communicate with the humans. 
+
+[[Tap randomly|Failure Node]]
+[[Tap SOS|Success Node]]
+
+
+
+
+:: Observe {"position":"725,725","size":"100,100"}
+You wait and observe the movement of the fragments. Some pieces appear more stable, while others fade and disappear after a moment.
+
+(The observation provides a hint for the next move.)
+[[Step onto a fixed fragment|Check Fixed Fragment]]
+[[Step onto a floating fragment|Check Floating Fragment]]
+
+
+
+:: Plato's Cave {"position":"600,1850","size":"100,100"}
+ Zylar ascends through the narrowing steps, the world around them growing darker. As they enter the cavern, they find themselves surrounded by swirling shadows that dance on the walls. The flickering shapes seem to move, morphing in ways that are both familiar and foreign. Zylar is not alone—unseen figures rattle chains in the depths, and distant whispers fill the air. A booming voice echoes from the darkness.
+ 
+''Plato'':
+ "What do you see, Zylar? Shadows on the wall, or the true forms beyond? Can you break free of this illusion and discover the light?"
+ 
+Zylar soon realizes the shadows are not mere projections but are tied to physical objects in the cavern. The task is clear: match the shadows to their corresponding objects to escape the cave. But things are not as simple as they seem—each shadow hides a clue that will lead to the light.
+
+[[Plato's puzzle]]
+
+
+:: Plato's puzzle {"position":"600,1975","size":"100,100"}
+In this puzzle, Zylar must drag objects into the correct positions where their shadows fall. As the objects are placed correctly, the cave’s darkness recedes, revealing the true forms hidden behind the illusions. The shadows become more defined and guide Zylar toward the fire, the ultimate source of light.
+
+
+[[Next | end of chapter 2]]
+
+
+:: Puzzle Start {"position":"600,450","size":"100,100"}
+On the near side, a fiery man gestures to the moving fragments.  
+**Heraclitus:** "Life is motion! You must embrace change to cross!"  
+
+On the far side, a calm, stoic figure stands on an unbroken slab of marble.  
+**Parmenides:** "Ignore the chaos. Only the unchanging can be trusted."
+
+The Immortal’s voice echoes in your mind:  
+//*"To cross, you must choose your path wisely. Step carefully, for not all pieces are real."*//
+
+(You need to make 5 correct moves to reach the other side.)
+(set: $progress to 0)
+
+[[Start]]
+
+
+:: Room {"position":"100,1500","size":"100,100"}
+Step 3: Interaction with Objects
+Scenario:
+- Zylar spots a small card left behind by the scientists. It looks important.
+
+UI Instructions:
+A pop-up appears:
+"Approach the object and use the mouse to click it. Select an action to interact."
+
+Example Interaction:
+Click Object → "Inspect" or "Remove Cover"
+
+
+[[Take the access card | Set Access Card]]
+[[Go to the door |Door]]
+
+
+:: Ruminate {"position":"100,575","size":"100,100"}
+"I am a creature of logic," Zylar murmurs, a mantra of control. "This is a puzzle to solve. A system to understand."
+
+(set: $survivalSkills to $survivalSkills + 1)
+
+Yet, the discomfort grows. The room is alive with signals that defy calculation—sounds too layered to decode, lights that pulse without pattern, and an unspoken tension that gnaws at their chest. This world makes no sense.
+
+For the first time in their existence, Zylar faces a thought they cannot process: ''Why can't I solve this? Isn’t everything supposed to be cacluatable? ''
+
+(set: $curiosity to $curiosity + 1)
+
+The sound of footsteps breaks their spiral of thought. A figure appears on the other side of the glass, their face obscured by the harsh fluorescent light. The muffled voice that follows is incomprehensible, yet it resonates within Zylar's mind, bypassing logic altogether.
+
+//"You are not alone."//
+
+[[Try to analyze the source of the voice]]
+
+
+
+:: Start {"position":"600,575","size":"100,100"}
+[[Step onto a fixed fragment|Check Fixed Fragment]]
+[[Step onto a floating fragment|Check Floating Fragment]]
+[[Wait and observe the pattern|Observe]]
+
+
+:: Success {"position":"600,850","size":"100,100"}
+Zylar steps onto the final fragment and leap to the other side. Heraclitus and Parmenides observe them in silence before continuing their debate.
+
+**Heraclitus:** "You adapted to the chaos. Proof that change is the essence of life!"  
+**Parmenides:** "And yet you relied on stability to succeed. Truth lies in the unchanging."
+
+
+The two philosophers argue further, their voices fading as Zylar continues onward. Them although cross the broken stairs but still confused and can't help wondering:
+
+"My world used to only have constancy, why do we need to find a balance between changes and constancy..."
+
+[[Proceed to the next scene|Zeno of Elea]]
+
+
+
+
+:: Success Node {"position":"100,1250","size":"100,100"}
+The tapping resonates through the sterile room, and the humans stop in their tracks. Their excitement is evident—they've recognized the Morse code as a sign of intelligence. They hastily leave the room to report their findings. In their excitement, they drop an access card on the table.
+
+//The Immortal speaks: "You have succeeded. Your mind is sharp, and your will is strong. Now, you gain the power to scale. Use it wisely, for your journey has only begun. Good luck... in your escape."//
+
+(Gain scaling ability.)
+(set: $ScalingAbility to true)
+[[Tutorial]]
+
+
+
+:: Try to analyze the source of the voice {"position":"100,700","size":"100,100"}
+Zylar jerks their head towards the figure, trying to analyze them. But no matter how they adjust their vision, the figure remains indistinct, their features melting into shadow like a half-forgotten memory.
+
+(???): //“You cannot calculate everything here, Zylar.”//
+
+[["Who are you? What do you want from me?" ->Dialogue 01]]
+
+
+:: Tutorial {"position":"100,1375","size":"100,100"}
+UI Instructions:
+A tutorial window appears, showing:
+
+Scaling UI Interface
+- A small icon or slider representing Zylar’s current size.
+- A clickable button labeled "Re-Scale" (or a slider that adjusts Zylar's size).
+
+//(Immortal):
+"Now, try it. Resize yourself to free from the restraints. Focus on yourself, then click ‘Re-Scale.’ Shrink to escape the binds that hold you."//
+
+Action:
+- The player clicks "Re-Scale" and adjusts Zylar’s size using the slider or button.
+- Visual feedback: Zylar visibly shrinks and slips out of the restraints.
+
+Narrative Feedback:
+As Zylar escapes, the Immortal comments:
+//"Well done. You have learned the first step to freedom. Your body is no longer a limitation."//
+
+Step 2: Movement Controls
+- Once Zylar is free, the camera shifts to allow full view of the room.
+
+UI Instructions:
+A pop-up appears:
+- "Use WASD to move."
+- The player can now control Zylar’s movement.
+//(Immortal):
+"Now, move. This space is yours to explore."//
+
+
+[[Explore the room |Room]]
+
+
+:: Tutorial2 {"position":"600,1600","size":"100,100"}
+Tutorial for swapping ability
+
+[[End of Tutorial2]]
+
+
+:: Zeno of Elea {"position":"600,975","size":"100,100"}
+Further along the path, Zylar encounters Zeno, the steps ahead seem to halve endlessly into smaller segments.
+
+''Zeno'': "Ah, a traveler! Tell me, can you truly arrive at your destination if the distance to it can always be halved?"
+
+Zeno presents his famous paradox, challenging Zylar to move forward despite the apparent impossibility.
+
+Zylar must reach the end of the infinite marble stairs.
+
+[[Enter Zeno's puzzle]]
+
+
+:: ch1_001 {"position":"100,200","size":"100,100"}
+Zylar's pod hurtles toward the unfamiliar planet below, the sound of metal groaning as it succumbs to Earth's atmosphere. Their logical mind computes the inevitable: crash landing. Survival was always a matter of cold equations, and this moment was no different.
+
+The pod skims over jagged mountain peaks before plummeting into a dense forest below, shattering on impact. A wave of heat and shock pulses through their body, but Zylar’s mind remains detached.
+
+"I am Zylar, and I will survive," they mutter to themselves, more as a statement of fact than an expression of fear.
+
+The crash is sudden, and everything goes black.
+
+(set: $survivalSkills to 0)
+(set: $curiosity to 0)
+(set: $accessCard to false)
+(set: $ScalingAbility to false)
+
+[[Captivity->ch1_002]]
+
+
+:: ch1_002 {"position":"100,325","size":"100,100"}
+Zylar awakens in an unfamiliar, sterile environment. A cold metal table beneath them, a faint hum from the air vent above. Their mind begins calculating the situation instinctively, as they always have:
+
+the dimensions of the room, the materials of the restraints, the probabilities of escape...
+
+[[Calculation result.]]
+
+
+:: ch2_001 {"position":"600,200","size":"100,100"}
+Zylar steps into a surreal dreamscape. Marble steps stretch infinitely upward and downward, their ends lost in a shimmering golden mist. The stairs seem to move subtly, everything here constantly challenges Zylar’s logic and worldview, defying Zylar’s attempts to calculate their path.
+
+//(Immortal) (voice echoes faintly in the air):
+"You have entered a realm of thought, where logic meets paradox. Here, you will encounter the essence of motion, change, and truth. But beware—truth is rarely simple, and progress often feels infinite."
+//
+
+[[Step onto the marble stairs | ch2_002]]
+
+(set: $SwapAbility to false)
+
+
+:: end of puzzle {"position":"600,1225","size":"100,100"}
+some takeaways from Zeno's puzzle.
+
+*(The player, **Zylar**, enters a vibrant grove where the four elements—**earth, air, fire, and water**—swirl in a mesmerizing display. Marble columns, overgrown with vines, frame the area. Empedocles, an ancient figure with a flowing robe and radiant energy, stands at the center, surrounded by the elements in perpetual motion.)*  
+
+"Welcome, traveler. You have encountered the paradoxes of Zeno, felt the stillness of Parmenides, and glimpsed the flux of Heraclitus. Each holds a piece of truth, yet each is incomplete without the others. Tell me, what troubles your mind?"  
+
+*(Zylar steps closer, hesitant.)*  
+
+**Zylar**:  
+"Zeno said motion is an illusion because of infinite divisions. Parmenides claimed reality is unchanging. Heraclitus spoke of endless flux. I don’t see how they can all be right."  
+
+**Empedocles**:  
+"Ah, the eternal question—**how can change and constancy coexist? How can motion be real when reason denies it?** Let me you."  
+
+*(Empedocles raises his hand, and the elements begin to swirl more deliberately, forming patterns of **connected dots** in the air.)*  
+
+
+[[Empedocles' puzzle]]
+
+
+
+:: next {"position":"600,1475","size":"100,100"}
+*(When the player successfully completes the puzzle, the dots converge into a glowing symbol of harmony—an infinity loop encircling the four elements.)*  
+
+**Empedocles**:  
+"Well done. You have seen how motion arises not from fragments, but from unity. Let me explain how the views of the philosophers you’ve met can coexist."  
+
+*(Empedocles gestures to the swirling elements.)*  
+
+**Empedocles**:  
+"Parmenides was right—there is an eternal essence to reality. These elements—earth, air, fire, and water—are unchanging at their core. They are the roots of existence, eternal and indivisible."  
+
+*(The elements briefly freeze, emphasizing their permanence.)*  
+
+**Empedocles**:  
+"But Heraclitus, too, was right. Change is real—not in the destruction of essence, but in the way these elements combine and separate. It is not chaos; it is the rhythm of nature, the eternal dance of Love and Strife."  
+
+*(The elements resume their motion, swirling and blending.)*  
+
+**Empedocles**:  
+"And Zeno? He believed motion was an illusion because he only saw the points, the divisions. But motion is not about crossing static markers. It is the continuous flow, the transformation of these eternal forces. Motion is real because change is real, but it is governed by eternal principles."  
+
+---
+
+#### Modern Context: The Balance of Unity and Change  
+
+*(Empedocles steps closer to Zylar, his tone softer.)*  
+
+**Empedocles**:  
+"In your time, science speaks of atoms and energy—building blocks and transformations. My elements are not so different. They represent the eternal laws that govern change. Reality is both constant and dynamic, both one and many. **Unity is found in balance.**"  
+
+*(Empedocles points to the infinity loop created by the puzzle.)*  
+
+**Empedocles**:  
+"This is the truth you must carry forward. Motion is neither endless division nor meaningless flux. It is the eternal harmony of forces, shaping all that is."  
+
+*(The elements rise into the sky, forming a glowing path ahead. Empedocles smiles.)*  
+
+**Empedocles**:  
+"Go now, traveler. Carry this wisdom to your journey’s end. Let the unity of the eternal and the beauty of change guide your steps."  
+
+*(Zylar nods and steps onto the glowing path, moving forward into the next challenge.)*  
+
+''(Gain Swap ability)''
+
+(set: $SwapAbility to true)
+
+[[Tutorial2]]
