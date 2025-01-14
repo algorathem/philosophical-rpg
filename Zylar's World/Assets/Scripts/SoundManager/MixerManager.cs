@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundMixerManager : MonoBehaviour
+public class MixerManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
     public void SetMusicVolume(float level)
