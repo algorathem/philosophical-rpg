@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RigidBodyMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
     private Rigidbody rb;
+    private bool isGrounded = true; // Check if the player is on the ground
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,12 @@ public class RigidBodyMovement : MonoBehaviour
     void Update()
     {
         MovePlayer();
+
+        // Check for the Jump input
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            Jump();
+        }
     }
 
     private void MovePlayer()
@@ -30,4 +37,22 @@ public class RigidBodyMovement : MonoBehaviour
         // Apply movement to the Rigidbody
         rb.MovePosition(transform.position + movement * moveSpeed * Time.deltaTime);
     }
+
+    private void Jump()
+    {
+        // Apply upward force for jumping
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = false; // Prevent multiple jumps mid-air
+    }
+
+    // Detect if the player is on the ground
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true; // Allow jumping again
+        }
+    }
 }
+
+
