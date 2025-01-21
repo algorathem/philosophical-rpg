@@ -1477,6 +1477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217991311}
+  - component: {fileID: 1217991312}
   m_Layer: 0
   m_Name: Maze Cell
   m_TagString: Untagged
@@ -1504,6 +1505,23 @@ Transform:
   - {fileID: 2140214494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1217991312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217991310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9391131dda941e4991e8eda586ed72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unvisited: {fileID: 469594382}
+  leftWall: {fileID: 1793284996}
+  rightWall: {fileID: 30845810}
+  frontWall: {fileID: 749493996}
+  backWall: {fileID: 2140214493}
 --- !u!1 &1394685312
 GameObject:
   m_ObjectHideFlags: 3

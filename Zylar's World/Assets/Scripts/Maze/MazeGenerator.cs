@@ -1,118 +1,194 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Cinemachine;
+
 public class MazeGenerator : MonoBehaviour
 {
-    public int width = 10;  // Width of the maze
-    public int height = 10; // Height of the maze
-    public GameObject wallPrefab; // Wall prefab for maze walls
-    public GameObject floorPrefab; // Floor prefab for maze floor
-    public GameObject playerPrefab; // Player prefab to spawn in the maze
-    public CinemachineFreeLook freeLookCamera;
+    [SerializeField] private MazeCell mazeCellPrefab;
+    [SerializeField] private int mazeWidth;
+    [SerializeField] private int mazeDepth;
 
-    private int[,] maze;
-    private Vector3 startPosition;
+    private MazeCell[,] mazeGrid;
+    private Pathfinding pathfinding;
+    private bool isMazeGenerated = false;
+    private MazeCell startCell;
+    private MazeCell goalCell;
 
     void Start()
     {
-        maze = new int[width, height];
-        GenerateMaze();
-        CreateMaze();
-        SpawnPlayer();
-    }
+        mazeGrid = new MazeCell[mazeWidth, mazeDepth];
 
-    void GenerateMaze()
-    {
-        // Initialize maze with all walls (1 for wall, 0 for empty space)
-        for (int x = 0; x < width; x++)
+        // Instantiate maze cells
+        for (int x = 0; x < mazeWidth; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < mazeDepth; z++)
             {
-                maze[x, y] = 1;
+                mazeGrid[x, z] = Instantiate(mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity);
             }
         }
 
-        // Start from a random position (usually (1,1))
-        Stack<Vector2Int> stack = new Stack<Vector2Int>();
-        Vector2Int current = new Vector2Int(1, 1);
-        maze[current.x, current.y] = 0;
+        // Generate the maze after cells are created
+        GenerateMaze(null, mazeGrid[0, 0]);
 
-        stack.Push(current);
+        // Initialize pathfinding
+        pathfinding = new Pathfinding(mazeGrid, mazeWidth, mazeDepth);
 
-        while (stack.Count > 0)
+        // Set start and goal cells
+        startCell = mazeGrid[0, 0];  // Example starting point
+        goalCell = mazeGrid[mazeWidth - 1, mazeDepth - 1];  // Example goal point
+
+        // Mark maze as generated
+        isMazeGenerated = true;
+    }
+
+    void Update()
+    {
+        // Wait for 'P' key press to start pathfinding
+        if (isMazeGenerated && Input.GetKeyDown(KeyCode.P) && startCell != null && goalCell != null)
         {
-            current = stack.Peek();
-            List<Vector2Int> neighbors = GetUnvisitedNeighbors(current);
-            
-            if (neighbors.Count > 0)
+            List<MazeCell> path = pathfinding.FindPath(startCell, goalCell);
+
+            if (path != null)
             {
-                // Choose a random neighbor and remove the wall between the current and neighbor
-                Vector2Int next = neighbors[Random.Range(0, neighbors.Count)];
-                maze[next.x, next.y] = 0;
-                maze[(current.x + next.x) / 2, (current.y + next.y) / 2] = 0;
-                stack.Push(next);
+                foreach (MazeCell cell in path)
+                {
+                    // Change the color of the path cells
+                    cell.GetComponent<Renderer>().material.color = Color.green;
+                }
             }
             else
             {
-                stack.Pop();
+                Debug.Log("No path found!");
             }
+
+            // Reset flag to prevent multiple pathfinding starts
+            isMazeGenerated = false;
         }
     }
 
-    List<Vector2Int> GetUnvisitedNeighbors(Vector2Int current)
+    void OnDrawGizmos()
     {
-        List<Vector2Int> neighbors = new List<Vector2Int>();
+        if (mazeGrid == null) return;
 
-        // Check all 4 neighboring cells (up, down, left, right)
-        Vector2Int[] directions = {
-            new Vector2Int(0, 2), // up
-            new Vector2Int(0, -2), // down
-            new Vector2Int(-2, 0), // left
-            new Vector2Int(2, 0)  // right
-        };
-
-        foreach (Vector2Int dir in directions)
+        for (int x = 0; x < mazeWidth; x++)
         {
-            Vector2Int neighbor = current + dir;
-            if (neighbor.x >= 0 && neighbor.x < width && neighbor.y >= 0 && neighbor.y < height && maze[neighbor.x, neighbor.y] == 1)
+            for (int z = 0; z < mazeDepth; z++)
             {
-                neighbors.Add(neighbor);
+                Gizmos.DrawWireCube(new Vector3(x, 0, z), Vector3.one);
             }
         }
 
-        return neighbors;
+        // Mark the entrance
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(new Vector3(0, 0, 0), Vector3.one);  // Entrance (position 0, 0)
+
+        // Mark the exit
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(mazeWidth - 1, 0, mazeDepth - 1), Vector3.one);  // Exit (position _mazeWidth-1, _mazeDepth-1)
     }
 
-    void CreateMaze()
+    private void GenerateMaze(MazeCell previousCell, MazeCell currentCell)
     {
-        // Instantiate walls and floors based on the maze array
-        for (int x = 0; x < width; x++)
+        currentCell.Visit();
+        ClearWalls(previousCell, currentCell);
+
+        MazeCell nextCell;
+
+        do
         {
-            for (int y = 0; y < height; y++)
+            nextCell = GetNextUnvisitedCell(currentCell);
+
+            if (nextCell != null)
             {
-                Vector3 position = new Vector3(x * 2, 0, y * 2);
-                if (maze[x, y] == 1)
-                {
-                    Instantiate(wallPrefab, position, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(floorPrefab, position, Quaternion.identity);
-                }
+                GenerateMaze(currentCell, nextCell);
+            }
+        } while (nextCell != null);
+    }
+
+    private MazeCell GetNextUnvisitedCell(MazeCell currentCell)
+    {
+        var unvisitedCells = GetUnvisitedCells(currentCell);
+
+        return unvisitedCells.OrderBy(_ => Random.Range(1, 10)).FirstOrDefault();
+    }
+
+    private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
+    {
+        int x = (int)currentCell.transform.position.x;
+        int z = (int)currentCell.transform.position.z;
+
+        if (x + 1 < mazeWidth)
+        {
+            var cellToRight = mazeGrid[x + 1, z];
+            
+            if (!cellToRight.IsVisited)
+            {
+                yield return cellToRight;
+            }
+        }
+
+        if (x - 1 >= 0)
+        {
+            var cellToLeft = mazeGrid[x - 1, z];
+
+            if (!cellToLeft.IsVisited)
+            {
+                yield return cellToLeft;
+            }
+        }
+
+        if (z + 1 < mazeDepth)
+        {
+            var cellToFront = mazeGrid[x, z + 1];
+
+            if (!cellToFront.IsVisited)
+            {
+                yield return cellToFront;
+            }
+        }
+
+        if (z - 1 >= 0)
+        {
+            var cellToBack = mazeGrid[x, z - 1];
+
+            if (!cellToBack.IsVisited)
+            {
+                yield return cellToBack;
             }
         }
     }
 
-    void SpawnPlayer()
+    private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
     {
-        // Spawn the player at the start position
-        Vector3 playerStartPos = new Vector3(1 * 2, 1, 1 * 2);  // Example start position (1,1)
-        GameObject player = Instantiate(playerPrefab, playerStartPos, Quaternion.identity);
-        if (freeLookCamera != null)
+        if (previousCell == null) return;
+
+        if (previousCell.transform.position.x < currentCell.transform.position.x)
         {
-            freeLookCamera.Follow = player.transform;
-            freeLookCamera.LookAt = player.transform;
+            previousCell.ClearRightWall();
+            currentCell.ClearLeftWall();
+            return;
+        }
+
+        if (previousCell.transform.position.x > currentCell.transform.position.x)
+        {
+            previousCell.ClearLeftWall();
+            currentCell.ClearRightWall();
+            return;
+        }
+
+        if (previousCell.transform.position.z < currentCell.transform.position.z)
+        {
+            previousCell.ClearFrontWall();
+            currentCell.ClearBackWall();
+            return;
+        }
+
+        if (previousCell.transform.position.z > currentCell.transform.position.z)
+        {
+            previousCell.ClearBackWall();
+            currentCell.ClearFrontWall();
+            return;
         }
     }
 }
