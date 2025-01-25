@@ -9,6 +9,7 @@ public interface IState
     public void HandleInput();
     public void LogicUpdate();
     public void PhysicsUpdate();
+    public void UiUpdate();
     public void OnAnimationEnterEvent();
     public void OnAnimationExitEvent();
     public void OnAnimationTransitionEvent();

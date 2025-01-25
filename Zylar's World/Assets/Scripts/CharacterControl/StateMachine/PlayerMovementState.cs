@@ -10,7 +10,6 @@ public class PlayerMovementState : IState
     protected PlayerGroundedData movementData;
     protected PlayerAirborneData airborneData;
 
-
     public PlayerMovementState(PlayerMovementStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
@@ -33,8 +32,6 @@ public class PlayerMovementState : IState
     {
         SetBaseRotationData();
     }
-
-
 
     public virtual void Enter()
     {
@@ -62,6 +59,22 @@ public class PlayerMovementState : IState
     public virtual void PhysicsUpdate()
     {
         Move();
+    }
+
+    public virtual void UiUpdate()
+    {
+        // Check if camera target has reached the target position
+        if (Vector3.Distance(stateMachine.player.cameraUtility.cameraTarget.localPosition, stateMachine.player.cameraUtility.finalTargetPosition) < stateMachine.player.cameraUtility.targetReachThreshold)
+        {
+            if (stateMachine.player.uiUtility.ShouldDisplayAimCursor())
+            {
+                stateMachine.player.uiUtility.EnableAimCursor();
+            }
+            if (stateMachine.player.uiUtility.ShouldDisplaySelectCursor())
+            {
+                stateMachine.player.uiUtility.EnableSelectCursor();
+            }
+        }
     }
 
     public virtual void OnAnimationEnterEvent()
@@ -258,6 +271,86 @@ public class PlayerMovementState : IState
         stateMachine.player.playerInput.PlayerActions.Look.started += OnMouseMovementStarted;
         stateMachine.player.playerInput.PlayerActions.Movement.performed += OnMovementPerformed;
         stateMachine.player.playerInput.PlayerActions.Movement.canceled += OnMovementCanceled;
+
+        // Aim action
+        stateMachine.player.playerInput.PlayerActions.Aim.performed += OnAimPerformed;
+        stateMachine.player.playerInput.PlayerActions.Aim.canceled += OnAimCanceled;
+
+        // Select action
+        stateMachine.player.playerInput.PlayerActions.Select.performed += OnSelectPerformed;
+        stateMachine.player.playerInput.PlayerActions.Select.canceled += OnSelectCanceled;
+
+    }
+
+    protected virtual void RemoveInputActionsCallback()
+    {
+        stateMachine.player.playerInput.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
+        stateMachine.player.playerInput.PlayerActions.Look.started -= OnMouseMovementStarted;
+        stateMachine.player.playerInput.PlayerActions.Movement.performed -= OnMovementPerformed;
+        stateMachine.player.playerInput.PlayerActions.Movement.canceled -= OnMovementCanceled;
+
+        // Aim action
+        stateMachine.player.playerInput.PlayerActions.Aim.performed -= OnAimPerformed;
+        stateMachine.player.playerInput.PlayerActions.Aim.canceled -= OnAimCanceled;
+
+        // Select action
+        stateMachine.player.playerInput.PlayerActions.Select.performed -= OnSelectPerformed;
+        stateMachine.player.playerInput.PlayerActions.Select.canceled -= OnSelectCanceled;
+    }
+
+    protected virtual void OnSelectPerformed(InputAction.CallbackContext context)
+    {
+        if (!stateMachine.player.uiUtility.isAiming || !stateMachine.player.uiUtility.isAimCursorEnabled)
+        {
+            return;
+        }
+        Debug.Log("Left mouse button pressed (Select started)");
+
+        // Enable select cursor
+        stateMachine.player.uiUtility.isSelecting = true;
+
+        // Disable aim cursor
+        stateMachine.player.uiUtility.DisableAimCursor();
+
+    }
+
+    protected virtual void OnSelectCanceled(InputAction.CallbackContext context)
+    {
+        if (!stateMachine.player.uiUtility.isAiming)
+        {
+            return;
+        }
+        Debug.Log("Left mouse button released (Select canceled)");
+
+        // Disable select cursor
+        stateMachine.player.uiUtility.isSelecting = false;
+        stateMachine.player.uiUtility.DisableSelectCursor();
+    }
+
+    protected virtual void OnAimPerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Right mouse button pressed (Aim started)");
+
+        // Move camera target upwards by aim offset
+        stateMachine.player.cameraUtility.cameraTarget.localPosition = stateMachine.player.cameraUtility.finalTargetPosition;
+
+        // Enable aim cursor
+        stateMachine.player.uiUtility.isAiming = true;
+    }
+
+    protected virtual void OnAimCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log("Right mouse button released (Aim canceled)");
+
+        // Reset camera target position
+        stateMachine.player.cameraUtility.cameraTarget.localPosition = stateMachine.player.cameraUtility.originalTargetPosition;
+
+        // Disable aim cursor
+        stateMachine.player.uiUtility.isAiming = false;
+        stateMachine.player.uiUtility.DisableAimCursor();
+
+        // Disable select cursor
+        stateMachine.player.uiUtility.DisableSelectCursor();
     }
 
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)
@@ -273,15 +366,6 @@ public class PlayerMovementState : IState
     protected virtual void OnMovementPerformed(InputAction.CallbackContext context)
     {
         UpdateCameraRecenteringState(context.ReadValue<Vector2>());
-    }
-
-
-    protected virtual void RemoveInputActionsCallback()
-    {
-        stateMachine.player.playerInput.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
-        stateMachine.player.playerInput.PlayerActions.Look.started -= OnMouseMovementStarted;
-        stateMachine.player.playerInput.PlayerActions.Movement.performed -= OnMovementPerformed;
-        stateMachine.player.playerInput.PlayerActions.Movement.canceled -= OnMovementCanceled;
     }
 
     protected void DecelerateHorizontally()

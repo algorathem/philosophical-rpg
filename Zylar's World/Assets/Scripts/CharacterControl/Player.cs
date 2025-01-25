@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
 
     [field: Header("Camera")]
     [field: SerializeField] public PlayerCameraUtility cameraUtility { get; private set; }
+
+    [field: Header("UI")]
+    [field: SerializeField] public PlayerUIUtility uiUtility { get; private set; }
+
 
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData animationData { get; private set; }
@@ -33,9 +38,12 @@ public class Player : MonoBehaviour
         colliderUtility.CalculateCapsuleColliderDimension();  // Calculate the CapsuleCollider dimension
         cameraUtility.Initialize();  // Initialize the PlayerCameraUtility component
         animationData.Initialize();  // Initialize the PlayerAnimationData component
+        uiUtility.Initialize();  // Initialize the PlayerUIUtility component
 
         MainCameraTransform = Camera.main.transform;  // Get the main camera's transform
+
     }
+
 
     private void OnValidate()
     {
@@ -62,6 +70,7 @@ public class Player : MonoBehaviour
     {
         movementStateMachine.HandleInput();
         movementStateMachine.LogicUpdate();
+        movementStateMachine.UiUpdate();
     }
 
     private void FixedUpdate()
@@ -83,4 +92,5 @@ public class Player : MonoBehaviour
     {
         movementStateMachine.OnAnimationTransitionEvent();
     }
+
 }
