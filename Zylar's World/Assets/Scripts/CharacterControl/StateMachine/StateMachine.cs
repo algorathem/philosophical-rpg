@@ -28,6 +28,11 @@ public abstract class StateMachine
         currentState?.PhysicsUpdate();
     }
 
+    public void UiUpdate()
+    {
+        currentState?.UiUpdate();
+    }
+
     public void OnAnimationEnterEvent()
     {
         currentState?.OnAnimationEnterEvent();
