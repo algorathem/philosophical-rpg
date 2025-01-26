@@ -5,9 +5,9 @@ using UnityEngine;
 public class PickUpable : MonoBehaviour
 {
     bool isHolding = false;
-    [SerializeField] float throwForce = 10;
     [SerializeField] float maxDistance = 5;
     [SerializeField] float distance;
+    [SerializeField] bool useGravity = true;
 
     TempParent tempParent;
     Rigidbody rb;
@@ -20,6 +20,15 @@ public class PickUpable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tempParent = TempParent.Instance;
         player = FindObjectOfType<Player>();
+
+        if (!useGravity)
+        {
+            rb.useGravity = false;
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +44,7 @@ public class PickUpable : MonoBehaviour
         if (isHolding)
         {
             Hold();
+            Rotate();
         }
     }
 
@@ -46,7 +56,10 @@ public class PickUpable : MonoBehaviour
             if (distance <= maxDistance)
             {
                 isHolding = true;
-                rb.useGravity = false;
+                if (useGravity)
+                {
+                    rb.useGravity = false;
+                }
                 rb.detectCollisions = true;
 
                 this.transform.SetParent(tempParent.transform);
@@ -90,7 +103,24 @@ public class PickUpable : MonoBehaviour
             objectPos = this.transform.position;
             this.transform.position = objectPos;
             this.transform.SetParent(null);
-            rb.useGravity = true;
+            if (useGravity)
+            {
+                rb.useGravity = true;
+            }
+        }
+    }
+
+    private void Rotate()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            // Rotate the object to the right
+            this.transform.Rotate(Vector3.up, Space.World);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            // Rotate the object to the up
+            this.transform.Rotate(Vector3.left, Space.World);
         }
     }
 
