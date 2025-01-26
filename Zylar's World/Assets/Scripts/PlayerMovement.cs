@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
             playerSpeed = defaultSpeed;
         }
 
+        /*
         // Crouch Logic
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -72,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             playerSpeed = defaultSpeed;
             scaleVec.y = 1f;
             transform.localScale = scaleVec;
-        }
+        }*/
 
         // Jump Logic
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)

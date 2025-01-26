@@ -3,14 +3,16 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public Vector3 moveDirection = Vector3.right; // Direction to move (e.g., Vector3.right or Vector3.forward)
+    public Vector3 moveDirection = Vector3.right; // Direction to move
     public float moveDistance = 5f; // Distance to move in the specified direction
     public float moveSpeed = 2f; // Speed of the platform's movement
-    public float pauseTime = 1f; // Time to pause at the furthest position before returning
+    public float pauseTime = 1f; // Time to pause at the target or original position
 
     private Vector3 originalPosition; // Starting position of the platform
     private Vector3 targetPosition; // Furthest position of the platform
     private bool isMoving = false; // Whether the platform is currently moving
+    private bool completeJourney = false; // Whether the platform should return to its original position after the player leaves
+    private bool movingToTarget = true; // Direction of movement
 
     void Start()
     {
@@ -19,69 +21,86 @@ public class MovingPlatform : MonoBehaviour
         targetPosition = originalPosition + moveDirection.normalized * moveDistance;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void FixedUpdate()
     {
-        // When the player steps on the platform, attach them to the platform
-        if (collision.gameObject.CompareTag("Player"))
+        if (isMoving)
         {
-            Transform playerTransform = collision.transform;
+            Vector3 target = movingToTarget ? targetPosition : originalPosition;
 
-            // Store the player's original scale
-            Vector3 originalScale = playerTransform.localScale;
+            // Smoothly move the platform
+            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.fixedDeltaTime);
 
-            // Parent the player to the platform
-            playerTransform.SetParent(transform);
+            // Check if the platform reached the target
+            if (Vector3.Distance(transform.position, target) <= 0.01f)
+            {
+                StartCoroutine(PauseBeforeSwitchingDirection());
+            }
+        }
+    }
 
-            // Restore the player's original scale to prevent distortion
-            playerTransform.localScale = originalScale;
+    private System.Collections.IEnumerator PauseBeforeSwitchingDirection()
+    {
+        isMoving = false; // Temporarily stop movement
+        yield return new WaitForSeconds(pauseTime);
+
+        // Check if the journey should complete after the player steps off
+        if (completeJourney)
+        {
+            if (!movingToTarget)
+            {
+                // If the platform is back at the original position, stop completely
+                completeJourney = false;
+                isMoving = false;
+                yield break;
+            }
         }
 
-        // Trigger movement when the platform is not already moving
-        if (!isMoving)
+        // Switch direction and continue moving
+        movingToTarget = !movingToTarget;
+        isMoving = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(MovePlatform());
+            isMoving = true; // Start moving the platform
+            completeJourney = false; // Reset journey completion behavior
+
+            Transform playerTransform = collision.transform;
+
+            // Create a helper GameObject to decouple the scale
+            GameObject rotationHelper = new GameObject("RotationHelper");
+            rotationHelper.transform.position = playerTransform.position;
+            rotationHelper.transform.rotation = playerTransform.rotation;
+
+            // Parent the helper to the platform
+            rotationHelper.transform.SetParent(transform, true);
+
+            // Parent the player to the helper (preserves scale and allows rotation)
+            playerTransform.SetParent(rotationHelper.transform, true);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        // Detach the player from the platform when they step off
         if (collision.gameObject.CompareTag("Player"))
         {
             Transform playerTransform = collision.transform;
 
-            // Store the player's original world scale
-            Vector3 originalScale = playerTransform.localScale;
+            // Detach the player from the helper
+            playerTransform.SetParent(null, true);
 
-            // Detach the player from the platform
-            playerTransform.SetParent(null);
+            // Find and destroy the rotation helper
+            Transform rotationHelper = transform.Find("RotationHelper");
+            if (rotationHelper != null)
+            {
+                Destroy(rotationHelper.gameObject);
+            }
 
-            // Restore the player's original scale to prevent distortion
-            playerTransform.localScale = originalScale;
+            playerTransform.localScale = new Vector3(1f, 1f, 1f);
+
+            completeJourney = true; // Flag the platform to return to its original position
         }
-    }
-
-    private System.Collections.IEnumerator MovePlatform()
-    {
-        isMoving = true;
-
-        // Move to the target position
-        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        // Pause at the target position
-        yield return new WaitForSeconds(pauseTime);
-
-        // Move back to the original position
-        while (Vector3.Distance(transform.position, originalPosition) > 0.01f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        isMoving = false;
     }
 }
