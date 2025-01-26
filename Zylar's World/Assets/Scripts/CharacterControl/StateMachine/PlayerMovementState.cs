@@ -336,6 +336,9 @@ public class PlayerMovementState : IState
 
         // Enable aim cursor
         stateMachine.player.uiUtility.isAiming = true;
+
+        // Disable select cursor
+        stateMachine.player.uiUtility.DisableSelectCursor();
     }
 
     protected virtual void OnAimCanceled(InputAction.CallbackContext context)
@@ -345,12 +348,13 @@ public class PlayerMovementState : IState
         // Reset camera target position
         stateMachine.player.cameraUtility.cameraTarget.localPosition = stateMachine.player.cameraUtility.originalTargetPosition;
 
+        // Disable select cursor
+        stateMachine.player.uiUtility.DisableSelectCursor();
+
         // Disable aim cursor
         stateMachine.player.uiUtility.isAiming = false;
         stateMachine.player.uiUtility.DisableAimCursor();
 
-        // Disable select cursor
-        stateMachine.player.uiUtility.DisableSelectCursor();
     }
 
     protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)

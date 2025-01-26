@@ -64,7 +64,7 @@ public class PlayerUIUtility
 
     public bool ShouldDisplaySelectCursor()
     {
-        if (isSelecting)
+        if (isSelecting && isAiming)
         {
             return true;
         }
