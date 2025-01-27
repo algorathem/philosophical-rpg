@@ -8,6 +8,7 @@ public class PickUpable : MonoBehaviour
     [SerializeField] float maxDistance = 5;
     [SerializeField] float distance;
     [SerializeField] bool useGravity = true;
+    [SerializeField] public bool isMovable { get; set; } = true;
 
     TempParent tempParent;
     Rigidbody rb;
@@ -50,6 +51,12 @@ public class PickUpable : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!isMovable)
+        {
+            return;
+        }
+
+        // Main logic for picking up the object
         if (tempParent != null)
         {
             distance = Vector3.Distance(this.transform.position, tempParent.transform.position);
