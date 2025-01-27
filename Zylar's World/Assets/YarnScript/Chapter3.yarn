@@ -1,0 +1,59 @@
+title: Chapter3_00
+position: 800, 900
+---
+Narrative: "From the shadows, an age of understanding begins. Knowledge once bound to reason alone now intertwines with the divine mysteries. The old ways fade and a new light emerges, one that promises salvation through faith. The whispers of ancient wisdom echo into a world where the soul seeks not just truth, but the divine. The age of reason moves into the age of grace, and the world begins anew."
+===
+title: Chapter3_01
+position: 800, 900
+---
+<<declare $indulgence = 0>>
+
+Collect bottles?
+-> Yes
+    <<set $indulgence = $indulgence + 1>>
+-> No
+
+Collect coins?
+-> Yes
+    <<set $indulgence = $indulgence + 1>>
+-> No
+
+Collect jewelry?
+-> Yes
+    <<set $indulgence = $indulgence + 1>>
+-> No
+
+-> A choice.
+    <<jump Chapter3_02_choice>>
+===
+title: Chapter3_02_choice
+position: 800, 900
+---
+
+-> "I'll stay where I am." <<if $indulgence == 3>>
+    Zylar: "Why pursue uncertainty when I can surround myself with what I know? These things—they don't question me. They're certain, tangible. They're enough… aren't they?"
+    <<jump Ending2>>
+    
+
+-> "I'll continue exploring."
+    <<if $indulgence < 3 or $indulgence == 3>>
+    Zylar: "I don't understand it all yet. But if there is a storm within me, I'll see where it leads."
+    <<jump Chapter3_03>>
+    <<endif>>
+===
+
+title: Ending2
+position: 800, 900
+---
+Zylar:  "The world around me transforms—a blissful illusion of hedonistic comfort."
+        "Sensual indulgences surround me, pulling me deeper into their embrace."
+        "But as each moment passes, the emptiness grows. The distractions consume me..."
+        "…until my consciousness fades into nothingness."
+
+Ending 2: "Lord, make me chaste—but not yet." 
+===
+title: Chapter3_03
+position: 800, 900
+---
+Augustine: "Restlessness is not your enemy, traveler. It is a force that drives us to seek truth, to grow beyond the limits of what we know. I, too, was once restless, driven by a storm within. I searched for meaning in indulgence, rebellion, and fleeting pleasures, yet found only emptiness."
+===
