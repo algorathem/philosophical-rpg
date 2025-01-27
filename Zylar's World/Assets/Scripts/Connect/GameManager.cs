@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class FlowPuzzle : MonoBehaviour
 {
@@ -62,6 +63,12 @@ public class FlowPuzzle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetGame();
+        }
+
+        // Exit Game when "F" is pressed
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SceneManager.LoadScene("BrokenStairs");
         }
     }
 
