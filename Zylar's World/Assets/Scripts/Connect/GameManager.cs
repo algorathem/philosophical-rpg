@@ -20,8 +20,10 @@ public class FlowPuzzle : MonoBehaviour
     private List<Vector2Int> currentPath; // Current path being drawn
     private Camera mainCamera;
 
-    [SerializeField] private AudioClip soundBeep;
-    [SerializeField] private AudioClip soundBoom;
+    //[SerializeField] private AudioClip soundBeep;
+    //[SerializeField] private AudioClip soundBoom;
+
+    public Vector3 spawnOrigin = new Vector3(10f, 0f, 10f); // Set custom spawn position
 
     void Start()
     {
@@ -64,17 +66,18 @@ public class FlowPuzzle : MonoBehaviour
         {
             ResetGame();
         }
-
+        /*
         // Exit Game when "F" is pressed
         if (Input.GetKeyDown(KeyCode.F))
         {
             SceneManager.LoadScene("BrokenStairs");
-        }
+        }*/
     }
 
     void GenerateGrid()
     {
         float cellSize = 1.0f; // Size of each grid cell
+        /*
         Vector2 gridOrigin = new Vector2(-gridSize / 2f, -gridSize / 2f); // Center the grid on the screen
 
         for (int x = 0; x < gridSize; x++)
@@ -93,7 +96,27 @@ public class FlowPuzzle : MonoBehaviour
                 // Store the cell in the grid array
                 grid[x, y] = cell.transform;
             }
+        }*/
+
+        
+        for (int x = 0; x < gridSize; x++)
+        {
+            for (int y = 0; y < gridSize; y++)
+            {
+                // Instantiate grid cell
+                GameObject cell = Instantiate(cellPrefab, transform);
+
+                // Set the cell's world position using the spawn origin
+                cell.transform.position = spawnOrigin + new Vector3(x * cellSize, y * cellSize, 0);
+
+                // Force rotation to make sure it lies flat
+                cell.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                // Store the cell in the grid array
+                grid[x, y] = cell.transform;
+            }
         }
+
     }
 
     void PlaceDots()
@@ -124,9 +147,29 @@ public class FlowPuzzle : MonoBehaviour
 
     void PlaceDot(Color color, Vector2Int position)
     {
+        /* 2D
         GameObject dot = Instantiate(dotPrefab, transform);
-        dot.transform.position = grid[position.x, position.y].position + new Vector3(0, 0, -0.1f); ;
-        dot.GetComponent<SpriteRenderer>().color = color;
+        //dot.transform.position = grid[position.x, position.y].position + new Vector3(0, 0, -0.1f);
+        dot.transform.position = grid[position.x, position.y].position + new Vector3(0, 0.5f, 0);
+
+        dot.GetComponent<SpriteRenderer>().color = color; */
+        GameObject dot = Instantiate(dotPrefab, transform);
+
+        // Adjust position using grid and spawnOrigin to prevent overlapping
+        dot.transform.position = spawnOrigin + new Vector3(position.x, position.y,0.0f);
+
+        // Ensure the sphere has a MeshRenderer and apply color
+        MeshRenderer meshRenderer = dot.GetComponent<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            meshRenderer.material.color = color;
+        }
+        else
+        {
+            Debug.LogError("MeshRenderer missing on dot prefab! Ensure the sphere has a MeshRenderer.");
+        }
+
+        //Debug.Log($"Placed dot at: {dot.transform.position} for grid position {position}");
     }
 
     void StartPath(Color dotColor, Vector2Int startCell)
@@ -221,7 +264,7 @@ public class FlowPuzzle : MonoBehaviour
             Vector3 position = grid[currentPath[i].x, currentPath[i].y].position;
             line.SetPosition(i, position);
         }
-        SoundFXManager.instance.PlaySoundFXClip(soundBeep, transform, 1f);
+        //SoundFXManager.instance.PlaySoundFXClip(soundBeep, transform, 1f);
 
         // Mark the cell as occupied
         cellOccupied[cellPosition.x, cellPosition.y] = true;
@@ -294,7 +337,7 @@ public class FlowPuzzle : MonoBehaviour
                 return; // Not all pairs are completed
             }
         }
-        SoundFXManager.instance.PlaySoundFXClip(soundBoom, transform, 1f);
+        //SoundFXManager.instance.PlaySoundFXClip(soundBoom, transform, 1f);
 
         Debug.Log("You win!");
     }
