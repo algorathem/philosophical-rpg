@@ -49,6 +49,24 @@ public class PickUpable : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        if (!isMovable)
+        {
+            return;
+        }
+
+        if (tempParent != null)
+        {
+            distance = Vector3.Distance(this.transform.position, tempParent.transform.position);
+            if (distance <= maxDistance)
+            {
+                player.uiUtility.isHovering = true;
+                player.uiUtility.DisableAimCursor();
+            }
+        }
+    }
+
     private void OnMouseDown()
     {
         if (!isMovable)
@@ -70,6 +88,11 @@ public class PickUpable : MonoBehaviour
                 rb.detectCollisions = true;
 
                 this.transform.SetParent(tempParent.transform);
+
+                // UI logic
+                player.uiUtility.isSelecting = true;
+                player.uiUtility.DisableHoverCursor();
+                player.uiUtility.EnableSelectCursor();
             }
 
         }
@@ -81,11 +104,15 @@ public class PickUpable : MonoBehaviour
 
     private void OnMouseUp()
     {
+        player.uiUtility.isSelecting = false;
+        player.uiUtility.DisableSelectCursor();
+        player.uiUtility.EnableHoverCursor();
         Drop();
     }
 
     private void OnMouseExit()
     {
+        player.uiUtility.DisableHoverCursor();
         Drop();
     }
 
