@@ -8,6 +8,9 @@ public class QuestItem : MonoBehaviour
     [SerializeField] float distance;
     Player player;
     TempParent tempParent;
+    private bool isHovered = false;
+    public float outlineWidth = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,27 @@ public class QuestItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isHovered)
+        {
+            if (GetComponent<Outline>() != null)
+            {
+                GetComponent<Outline>().enabled = true;
+            }
+            else
+            {
+                Outline outline = gameObject.AddComponent<Outline>();
+                outline.enabled = true;
+                outline.OutlineColor = Color.white;
+                outline.OutlineWidth = outlineWidth;
+            }
+        }
+        else
+        {
+            if (GetComponent<Outline>() != null)
+            {
+                GetComponent<Outline>().enabled = false;
+            }
+        }
     }
 
     private void OnMouseEnter()
@@ -30,6 +53,8 @@ public class QuestItem : MonoBehaviour
             {
                 player.uiUtility.isMessaging = true;
                 player.uiUtility.DisableAimCursor();
+
+                isHovered = true;
             }
         }
     }
@@ -37,6 +62,7 @@ public class QuestItem : MonoBehaviour
     private void OnMouseExit()
     {
         player.uiUtility.DisableMessageCursor();
+        isHovered = false;
     }
 
 
