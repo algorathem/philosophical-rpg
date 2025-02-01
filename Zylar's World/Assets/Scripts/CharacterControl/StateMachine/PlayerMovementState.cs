@@ -70,9 +70,17 @@ public class PlayerMovementState : IState
             {
                 stateMachine.player.uiUtility.EnableAimCursor();
             }
+            if (stateMachine.player.uiUtility.ShouldDisplayHoverCursor())
+            {
+                stateMachine.player.uiUtility.EnableHoverCursor();
+            }
             if (stateMachine.player.uiUtility.ShouldDisplaySelectCursor())
             {
                 stateMachine.player.uiUtility.EnableSelectCursor();
+            }
+            if (stateMachine.player.uiUtility.ShouldDisplayMessageCursor())
+            {
+                stateMachine.player.uiUtility.EnableMessageCursor();
             }
         }
     }
@@ -275,11 +283,6 @@ public class PlayerMovementState : IState
         // Aim action
         stateMachine.player.playerInput.PlayerActions.Aim.performed += OnAimPerformed;
         stateMachine.player.playerInput.PlayerActions.Aim.canceled += OnAimCanceled;
-
-        // Select action
-        stateMachine.player.playerInput.PlayerActions.Select.performed += OnSelectPerformed;
-        stateMachine.player.playerInput.PlayerActions.Select.canceled += OnSelectCanceled;
-
     }
 
     protected virtual void RemoveInputActionsCallback()
@@ -292,39 +295,6 @@ public class PlayerMovementState : IState
         // Aim action
         stateMachine.player.playerInput.PlayerActions.Aim.performed -= OnAimPerformed;
         stateMachine.player.playerInput.PlayerActions.Aim.canceled -= OnAimCanceled;
-
-        // Select action
-        stateMachine.player.playerInput.PlayerActions.Select.performed -= OnSelectPerformed;
-        stateMachine.player.playerInput.PlayerActions.Select.canceled -= OnSelectCanceled;
-    }
-
-    protected virtual void OnSelectPerformed(InputAction.CallbackContext context)
-    {
-        if (!stateMachine.player.uiUtility.isAiming || !stateMachine.player.uiUtility.isAimCursorEnabled)
-        {
-            return;
-        }
-        Debug.Log("Left mouse button pressed (Select started)");
-
-        // Enable select cursor
-        stateMachine.player.uiUtility.isSelecting = true;
-
-        // Disable aim cursor
-        stateMachine.player.uiUtility.DisableAimCursor();
-
-    }
-
-    protected virtual void OnSelectCanceled(InputAction.CallbackContext context)
-    {
-        if (!stateMachine.player.uiUtility.isAiming)
-        {
-            return;
-        }
-        Debug.Log("Left mouse button released (Select canceled)");
-
-        // Disable select cursor
-        stateMachine.player.uiUtility.isSelecting = false;
-        stateMachine.player.uiUtility.DisableSelectCursor();
     }
 
     protected virtual void OnAimPerformed(InputAction.CallbackContext context)
@@ -350,6 +320,9 @@ public class PlayerMovementState : IState
 
         // Disable select cursor
         stateMachine.player.uiUtility.DisableSelectCursor();
+
+        // Disable hover cursor
+        stateMachine.player.uiUtility.DisableHoverCursor();
 
         // Disable aim cursor
         stateMachine.player.uiUtility.isAiming = false;

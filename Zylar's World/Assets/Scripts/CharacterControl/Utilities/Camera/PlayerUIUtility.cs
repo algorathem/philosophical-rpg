@@ -8,16 +8,23 @@ public class PlayerUIUtility
     [field: Header("UI Settings")]
     [field: SerializeField] public Image selectCursor { get; private set; }
     [field: SerializeField] public Image aimCursor { get; private set; }
+    [field: SerializeField] public Image hoverCursor { get; private set; }
+    [field: SerializeField] public GameObject messageCursor { get; private set; }
+
 
     public bool isAiming { get; set; } = false;
     public bool isAimCursorEnabled { get; set; } = false;
     public bool isSelecting { get; set; } = false;
     public bool isSelectCursorEnabled { get; set; } = false;
+    public bool isHovering { get; set; } = false;
+    public bool isMessaging { get; set; } = false;
 
     public void Initialize()
     {
         aimCursor.enabled = false;
         selectCursor.enabled = false;
+        hoverCursor.enabled = false;
+        messageCursor.SetActive(false);
 
         // Hide and lock system cursor
         Cursor.visible = false;
@@ -48,11 +55,35 @@ public class PlayerUIUtility
         selectCursor.enabled = false;
     }
 
+    public void EnableHoverCursor()
+    {
+        isHovering = true;
+        hoverCursor.enabled = true;
+    }
+
+    public void DisableHoverCursor()
+    {
+        isHovering = false;
+        hoverCursor.enabled = false;
+    }
+
+    public void EnableMessageCursor()
+    {
+        isMessaging = true;
+        messageCursor.SetActive(true);
+    }
+
+    public void DisableMessageCursor()
+    {
+        isMessaging = false;
+        messageCursor.SetActive(false);
+    }
+
     public bool ShouldDisplayAimCursor()
     {
         if (isAiming)
         {
-            if (isSelecting)
+            if (isSelecting || isHovering || isMessaging)
             {
                 return false;
             }
@@ -70,4 +101,31 @@ public class PlayerUIUtility
         }
         return false;
     }
+
+    public bool ShouldDisplayHoverCursor()
+    {
+        // should only be shown when in aiming mode
+        if (isAiming)
+        {
+            if (isHovering && !isSelecting)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool ShouldDisplayMessageCursor()
+    {
+        // should only be shown when in aiming mode
+        if (isAiming)
+        {
+            if (isMessaging)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
