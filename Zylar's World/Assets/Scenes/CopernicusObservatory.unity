@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 1061260553}
   m_Layer: 0
   m_Name: QuestItem
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 5
   distance: 0
+  outlineWidth: 5
 --- !u!1 &1385847855 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1193942760499176534, guid: ae73a83f419782c4aa40e7884cb7c588,
