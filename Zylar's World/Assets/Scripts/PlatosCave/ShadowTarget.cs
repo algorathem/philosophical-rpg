@@ -74,8 +74,10 @@ public class ShadowTarget : MonoBehaviour
     {
         // If the shadow outer object is shadowed, do not count as fully covered
         Debug.Log("Is shadowed: " + shadowCasterShadow.isTriggered);
+        Debug.Log("Fully covered times: " + fullyCoveredTimes);
         if (shadowCasterShadow.isTriggered)
         {
+            fullyCoveredTimes = 0;
             return;
         }
 
