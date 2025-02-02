@@ -1,57 +1,69 @@
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InteractableObject : MonoBehaviour
 {
-    //public string targetScene; // Name of the scene to load
     public KeyCode interactionKey = KeyCode.F; // Key to interact
-
     private bool isPlayerNearby = false;
-    public CinemachineVirtualCamera mainCamera; // Assign in the inspector
-    public CinemachineVirtualCamera puzzleCamera; // Assign in the inspector
-    public GameObject puzzleManager; // Reference to the PuzzleManager
+
+    public CinemachineVirtualCamera mainCamera; // Assign in Inspector
+    public CinemachineVirtualCamera puzzleCamera; // Assign in Inspector
+    public GameObject puzzleManager; // Reference to PuzzleManager
 
     void Start()
     {
-        /*
-        // Ensure the main camera is active at the start
+        // Ensure normal game starts with main camera active
         if (mainCamera != null)
-            mainCamera.Priority = 10;
+            mainCamera.Priority = 11; // Highest priority for start
 
         if (puzzleCamera != null)
-            puzzleCamera.Priority = 0;*/
-        puzzleManager.SetActive(false);
+            puzzleCamera.Priority = 0; // Lower priority so it's inactive
+
+        if (puzzleManager != null)
+            puzzleManager.SetActive(false);
     }
+
     void Update()
     {
         if (isPlayerNearby && Input.GetKeyDown(interactionKey))
         {
-            //SceneManager.LoadScene(targetScene);
             EnterPuzzleMode();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape)) // Press ESC to exit puzzle mode
+        {
+            ExitPuzzleMode();
+        }
     }
+
     void EnterPuzzleMode()
     {
         Debug.Log("Switching to Puzzle Mode...");
-
-        // Switch camera priority to transition to the puzzle view
         if (puzzleCamera != null && mainCamera != null)
         {
-            puzzleCamera.Priority = 11; // Higher priority to activate
-            mainCamera.Priority = 0; // Lower priority to deactivate
+            puzzleCamera.Priority = 12; // Make puzzle cam active
+            mainCamera.Priority = 0; // Deactivate main cam
         }
 
-        // Enable the puzzle interaction
         if (puzzleManager != null)
-        {
             puzzleManager.SetActive(true);
+    }
+
+    void ExitPuzzleMode()
+    {
+        Debug.Log("Exiting Puzzle Mode...");
+        if (puzzleCamera != null && mainCamera != null)
+        {
+            puzzleCamera.Priority = 0; // Deactivate puzzle cam
+            mainCamera.Priority = 12; // Reactivate main cam
         }
+
+        if (puzzleManager != null)
+            puzzleManager.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Ensure the player has the "Player" tag
+        if (other.CompareTag("Player"))
         {
             isPlayerNearby = true;
         }
@@ -63,5 +75,13 @@ public class InteractableObject : MonoBehaviour
         {
             isPlayerNearby = false;
         }
+    }
+    public Camera GetActiveCamera()
+    {
+        if (puzzleCamera.Priority > mainCamera.Priority)
+        {
+            return puzzleCamera.GetComponent<Camera>(); // Ensure the puzzle cam has a Camera component
+        }
+        return mainCamera.GetComponent<Camera>(); // Ensure the main cam has a Camera component
     }
 }

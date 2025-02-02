@@ -33,19 +33,19 @@ public class PlayerMovement : MonoBehaviour
         // Movement logic
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            inputVector.x -= 1;
+            inputVector.z -= 1;
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            inputVector.z -= 1;
+            inputVector.x += 1;
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            inputVector.x += 1;
+            inputVector.z += 1;
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            inputVector.z += 1;
+            inputVector.x -= 1;
         }
 
         // Running logic
@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
+        
         // Turning logic using Q and E
         if (Input.GetKey(KeyCode.Q))
         {
@@ -106,12 +107,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Camera follows player's direction
+        /*
         if (cameraTransform != null)
         {
             Vector3 cameraOffset = new Vector3(0, 5, -10);
             cameraTransform.position = transform.position + transform.rotation * cameraOffset;
             cameraTransform.LookAt(transform.position + Vector3.up * 1.5f);
-        }
+        }*/
 
         // Normalize movement vector and apply movement
         inputVector = inputVector.normalized;
