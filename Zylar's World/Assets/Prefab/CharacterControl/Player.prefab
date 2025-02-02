@@ -78,7 +78,7 @@ MonoBehaviour:
     <selectCursor>k__BackingField: {fileID: 4696848423521885457}
     <aimCursor>k__BackingField: {fileID: 3386151331607901205}
     <hoverCursor>k__BackingField: {fileID: 3078163016350153261}
-    <messageCursor>k__BackingField: {fileID: 1754828225851479215}
+    <messageCursor>k__BackingField: {fileID: 1193942760499176534}
   <animationData>k__BackingField:
     groundedParameterName: Grounded
     movingParameterName: Moving
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_HorizontalRecentering:
     m_enabled: 0
     m_WaitTime: 0
-    m_RecenteringTime: 4
+    m_RecenteringTime: 5.333333
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_ApplyBeforeBody: 0
