@@ -1,0 +1,158 @@
+title: Start
+position: -23,-764
+---
+<<declare $survivalSkills = 0>>
+<<declare $curiosity = 0>>
+<<declare $accessCard = false>>
+<<declare $ScalingAbility = false>>
+
+Narrative: Zylar's pod hurtles toward the unfamiliar planet below, the sound of metal groaning as it succumbs to Earth's atmosphere. Their logical mind computes the inevitable: crash landing. Survival was always a matter of cold equations, and this moment was no different. The pod skims over jagged mountain peaks before plummeting into a dense forest below, shattering on impact. A wave of heat and shock pulses through their body, but Zylar’s mind remains detached.
+
+Zylar: "I am Zylar, and I will survive."
+
+The crash is sudden, and everything goes black.
+
+-> Captivity
+    <<jump ch1_002>>
+===
+
+title: ch1_002
+position: -16,-590
+---
+
+Zylar awakens in an unfamiliar, sterile environment. A cold metal table beneath them, a faint hum from the air vent above. Their mind begins calculating the situation instinctively, as they always have -- the dimensions of the room, the materials of the restraints, the probabilities of escape...
+
+-> Calculation result
+    <<jump CalculationResult>>
+---
+===
+title: CalculationResult
+position: -9,-432
+---
+<<declare $calculationFailed = true>>
+All calculation failed.
+
+For...the second time (technically speaking, the first time is when their ship collapsed) in their perfectly predictable life, the variables refuse to align. Too little information on this completely foreign environment, too much unknown. The only certain fact is that they are imprisoned. 
+
+Through the glass walls, shadowy figures observe them, their alien movements and language indecipherable. The weight of their stares feels… invasive.
+
+
+-> Ruminate
+    <<jump Ruminate>>
+===
+title: Ruminate
+position: -20,-238
+---
+Zylar jerks their head towards the figure, trying to analyze them. But no matter how they adjust their vision, the figure remains indistinct, their features melting into shadow like a half-forgotten memory.
+
+???: "You cannot calculate everything here, Zylar."
+
+-> "Who are you? What do you want from me?"
+    <<jump Dialogue01>>
+===
+title: Dialogue01
+position: -13,-56
+---
+???: "I want nothing. It is you who must decide what you want. Stay here, clinging to your malfunctioning logic, imprisoned by what you think you know. Or embrace the unknown, escape this place, and dive into the chaos beyond."
+
+-> Remain
+    <<jump Ending1>>
+-> Embrace the unknown
+    <<jump NextNode>>
+---
+===
+title: Ending1
+position: 800, 900
+---
+GAME OVER
+
+Scientists fail to recognize Zylar as an intelligent being, mistaking them for a mutated animal. They perish in the experiments, their potential never realized.
+
+An Abruptly Ended Journey
+
+===
+title: NextNode
+position: -36,111
+---
+<<declare $failures = 0>>
+
+Immortal: "You made the right choice. But if you wish to survive, you must first communicate with those humans. Communication is the key to connection and understanding."
+
+Immortal: "Although you cannot produce their sounds, there is one method that both sides will understand. A pattern. Use the table. Let them hear your mind through your movements."
+
+"Three short, three long, three short. A cry for help transcends all language."
+<<set $failures = 0>>
+
+-> Morse Code Puzzle
+    <<jump MorseCodePuzzle>>
+---
+===
+title: MorseCodePuzzle
+position: -43,315
+---
+You must tap the correct pattern to communicate with the humans.
+
+-> Tap randomly
+    <<jump FailureNode>>
+-> Tap SOS
+    <<jump SuccessNode>>
+---
+===
+title: FailureNode
+position: -324,419
+---
+<<set $failures = $failures + 1>>
+
+The tapping echoes through the room, but nothing happens.
+
+<<if $failures == 1>>
+The Immortal's voice echoes faintly: "A cry for help. Try tapping SOS."
+<<elseif $failures == 2>>
+The Immortal sounds almost impatient: "Think in patterns! Three short. Three long. Three short."
+<<else>>
+The Immortal sighs. "Three taps. Three pauses. Three taps. Try again."
+<<endif>>
+
+-> Try Again
+    <<jump MorseCodePuzzle>>
+---
+===
+title: SuccessNode
+position: -26,480
+---
+The tapping resonates through the sterile room, and the humans stop in their tracks. Their excitement is evident—they've recognized the Morse code as a sign of intelligence. They hastily leave the room to report their findings. In their excitement, they drop an access card on the table.
+
+Immortal: "You have succeeded. Your mind is sharp, and your will is strong. Now, you gain the power to scale. Use it wisely, for your journey has only begun. Good luck... in your escape."
+
+Scientists recognize the code and are excited that they find an unknown creature with high intelligence, they are too excited that they hastily leave the room to report and their access card is left behind for Zylar to use.
+
+<<set $ScalingAbility = true>>
+
+===
+title: ch1_Tutorial01
+position: -20, 600
+---
+<<if $ScalingAbility == true>>
+You have gained the power to scale. Use it to climb obstacles and reach new heights. Simply click on the object you wish to scale.
+
+Scaleing UIinterface - A small icon or slider representing Zylar's current size.
+A clickable button labeled "Re-Scale" (or a slider that adjusts Zylar's size).
+Immortal: "Now, try it. Resize yourself to free from the restraints. Focus on yourself, then click 'Re-Scale.' Shrink to escape the bonds that hold you."
+
+Click Re-Scale to shrink and escape the restraints.
+<<endif>>
+===
+title: ch1_Tutorial02
+position: -20, 700
+---
+Immortal: "Well done. You have learned the first step to freedom. Your body is no longer a limitation."
+<<camera_look room>> // Camera focuses on the room, add in C# script
+UI instructions - Use WASD to move.
+Immortal: "Now, move. This space is yours to explore."
+===
+title: ch1_Tutorial03
+position: -20, 800
+---
+//when Zylar approaches the access card 
+UI instructions - Approach the object and use the mouse to click it. Select an action to interact.
+===

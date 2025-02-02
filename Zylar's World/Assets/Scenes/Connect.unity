@@ -1692,20 +1692,20 @@ MonoBehaviour:
     type: 3}
   pathPrefab: {fileID: 7393083983398139222, guid: 01c46955110f4f742859cb8852286f2e,
     type: 3}
-  gridSize: 6
+  gridSize: 8
   dotPairsConfig:
   - color: {r: 0.96066076, g: 0.9716981, b: 0.1512549, a: 1}
-    position1: {x: 1, y: 1}
-    position2: {x: 2, y: 2}
+    position1: {x: 1, y: 7}
+    position2: {x: 2, y: 3}
   - color: {r: 0.9716981, g: 0.0779192, b: 0.0779192, a: 1}
-    position1: {x: 3, y: 3}
-    position2: {x: 4, y: 4}
+    position1: {x: 0, y: 0}
+    position2: {x: 4, y: 3}
   - color: {r: 0.08018869, g: 0.09091554, b: 1, a: 1}
-    position1: {x: 5, y: 5}
-    position2: {x: 0, y: 0}
+    position1: {x: 1, y: 6}
+    position2: {x: 2, y: 2}
   - color: {r: 0.07843137, g: 1, b: 0.13377136, a: 1}
-    position1: {x: 0, y: 5}
-    position2: {x: 0, y: 3}
+    position1: {x: 2, y: 7}
+    position2: {x: 1, y: 3}
   soundBeep: {fileID: 8300000, guid: 8ae9276baa63994418456751b7722287, type: 3}
   soundBoom: {fileID: 8300000, guid: 0a1238ce175f518428e62a58f9255d87, type: 3}
 --- !u!4 &2060329346

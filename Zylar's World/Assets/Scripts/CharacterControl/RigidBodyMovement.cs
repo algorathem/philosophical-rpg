@@ -6,10 +6,14 @@ public class RigidBodyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float rotationSpeed = 100f;
+
     private Rigidbody rb;
     private bool isGrounded = true; // Check if the player is on the ground
 
     // Start is called before the first frame update
+    public Transform cameraTransform; // Assign the camera transform in the Inspector
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,6 +28,24 @@ public class RigidBodyMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
+        }
+        // Turning logic using Q and E
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0); // Rotate left
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0); // Rotate right
+        }
+
+        // Camera follows player's direction
+        if (cameraTransform != null)
+        {
+            Vector3 cameraOffset = new Vector3(0, 5, -10);
+            cameraTransform.position = transform.position + transform.rotation * cameraOffset;
+            cameraTransform.LookAt(transform.position + Vector3.up * 1.5f);
         }
     }
 
