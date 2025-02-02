@@ -30,7 +30,7 @@ public class InteractiveShadow : MonoBehaviour
     {
         InitializeShadowCollider();
 
-        lightType = lightTransform.GetComponent<Light>().type;
+        // lightType = lightTransform.GetComponent<Light>().type;
 
         objectVertices = transform.GetComponent<MeshFilter>().mesh.vertices.Distinct().ToArray();
 
