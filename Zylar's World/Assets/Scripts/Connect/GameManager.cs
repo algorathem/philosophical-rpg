@@ -21,7 +21,7 @@ public class FlowPuzzle : MonoBehaviour
     private Camera mainCamera;
 
     public Vector3 spawnOrigin = new Vector3(10f, 0f, 10f);
-    public Vector3 customRayOrigin = new Vector3(-230f, 7.2f, -5f);
+    public Material dotMaterial;
 
     void Start()
     {
@@ -109,6 +109,7 @@ public class FlowPuzzle : MonoBehaviour
         MeshRenderer meshRenderer = dot.GetComponent<MeshRenderer>();
         if (meshRenderer != null)
         {
+            meshRenderer.material = dotMaterial;
             meshRenderer.material.color = color;
         }
         else
