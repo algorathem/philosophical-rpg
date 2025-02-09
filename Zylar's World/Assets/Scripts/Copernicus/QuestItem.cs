@@ -12,6 +12,8 @@ public class QuestItem : MonoBehaviour
     public Transform cameraTarget;
     public CinemachineVirtualCamera vcam;
     private CinemachineFramingTransposer framingTransposer;
+    public GameObject postProcessingVolume;
+    public List<GameObject> dissolveObjects;
 
     private bool isHovered = false;
     private bool isInteracted = false;
@@ -94,6 +96,32 @@ public class QuestItem : MonoBehaviour
         }
     }
 
+    private void PlayQuestInteractSequence()
+    {
+        // Make tween sequence
+        Sequence sequence = DOTween.Sequence();
+
+        // Toggle camera distance
+        sequence.Append(DOTween.To(() => targetCameraDistance, x => targetCameraDistance = x, newCameraDistance, 0.5f).SetEase(Ease.InOutQuad));
+
+        int i = 0;
+        // Tween shader property
+        foreach (GameObject obj in dissolveObjects)
+        {
+            // Tween shader property
+            sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(-1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+
+            i++;
+        }
+
+        // Enable cursor
+        sequence.Play().OnComplete(() =>
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        });
+    }
+
     private void OnKeyE()
     {
         if (isHovered && !isInteracted)
@@ -114,8 +142,13 @@ public class QuestItem : MonoBehaviour
             vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = newCameraSpeed;
             vcam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = newCameraSpeed;
 
-            // Toggle camera distance
-            DOTween.To(() => targetCameraDistance, x => targetCameraDistance = x, newCameraDistance, 0.5f).SetEase(Ease.InOutQuad);
+            // Toggle post processing volume
+            postProcessingVolume.SetActive(true);
+
+            // Play quest interact sequence
+            PlayQuestInteractSequence();
+
+
         }
         else if (isInteracted)
         {
@@ -131,6 +164,9 @@ public class QuestItem : MonoBehaviour
             vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = originalCameraSpeed;
             vcam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = originalCameraSpeed;
             player.playerInput.InputActions.Enable();
+
+            // Toggle post processing volume
+            postProcessingVolume.SetActive(false);
 
             // Toggle camera distance
             DOTween.To(() => targetCameraDistance, x => targetCameraDistance = x, originalCameraDistance, 0.5f).SetEase(Ease.InOutQuad);
