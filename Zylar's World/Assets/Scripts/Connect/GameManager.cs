@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class FlowPuzzle : MonoBehaviour
 {
@@ -228,6 +229,7 @@ public class FlowPuzzle : MonoBehaviour
         }
 
         Debug.Log("You win!");
+        SceneManager.LoadScene("Temp Overworld");
     }
 
     Vector2Int ConvertWorldToGrid(Vector3 worldPosition)

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Connect.unity
     guid: 511ae1fcb645ade4485476794b92055b
+  - enabled: 1
+    path: Assets/Scenes/Medival/Temp Overworld.unity
+    guid: b2e5693c87748c346a58cd5d9b351fde
   m_configObjects: {}

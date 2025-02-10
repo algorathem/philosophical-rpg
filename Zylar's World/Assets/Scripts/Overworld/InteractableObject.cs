@@ -6,9 +6,13 @@ public class InteractableObject : MonoBehaviour
     public KeyCode interactionKey = KeyCode.F; // Key to interact
     private bool isPlayerNearby = false;
 
+    public Texture2D cursorForCam1;
+
+    public CinemachineBrain cinemachineBrain;
     public CinemachineVirtualCamera mainCamera; // Assign in Inspector
     public CinemachineVirtualCamera puzzleCamera; // Assign in Inspector
     public GameObject puzzleManager; // Reference to PuzzleManager
+    public CursorTrail trailForCam1;
 
     void Start()
     {
@@ -21,6 +25,13 @@ public class InteractableObject : MonoBehaviour
 
         if (puzzleManager != null)
             puzzleManager.SetActive(false);
+
+        if (cinemachineBrain == null)
+            cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+
+        // Listen for camera switch events
+        cinemachineBrain.m_CameraActivatedEvent.AddListener(OnCameraSwitch);
+        trailForCam1.enabled = false;
     }
 
     void Update()
@@ -84,4 +95,31 @@ public class InteractableObject : MonoBehaviour
         }
         return mainCamera.GetComponent<Camera>(); // Ensure the main cam has a Camera component
     }
+
+    private void OnCameraSwitch(ICinemachineCamera newCam, ICinemachineCamera oldCam)
+    {
+        if (newCam != null)
+        {
+            Debug.Log("Switched to Camera: " + newCam.VirtualCameraGameObject.name);
+
+            // Disable cursor and trail by default
+            Cursor.visible = false;
+            trailForCam1.enabled = false;
+
+            if (newCam.VirtualCameraGameObject.name == "Connect Cam")
+            {
+                Cursor.visible = true;
+                Cursor.SetCursor(cursorForCam1, Vector2.zero, CursorMode.Auto);
+                trailForCam1.enabled = true;
+                Debug.Log("Cursor & Trail Enabled");
+            }
+            else
+            {
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                Debug.Log("Cursor & Trail Disabled");
+            }
+        }
+    }
+
+
 }
