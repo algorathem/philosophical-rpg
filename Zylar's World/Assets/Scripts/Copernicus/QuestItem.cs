@@ -45,6 +45,12 @@ public class QuestItem : MonoBehaviour
             Debug.Log("Key E pressed");
             OnKeyE();
         }
+
+        // Key Escape
+        if (Input.GetKeyDown(KeyCode.Escape) && isInteracted)
+        {
+            OnKeyEsc();
+        }
     }
 
     private void LateUpdate()
@@ -122,6 +128,34 @@ public class QuestItem : MonoBehaviour
         });
     }
 
+    private void PlayQuestExitSequence()
+    {
+        // Make tween sequence
+        Sequence sequence = DOTween.Sequence();
+
+        // Toggle camera distance
+        sequence.Append(DOTween.To(() => targetCameraDistance, x => targetCameraDistance = x, originalCameraDistance, 0.5f).SetEase(Ease.InOutQuad));
+
+        int i = 0;
+        // Tween shader property
+        foreach (GameObject obj in dissolveObjects)
+        {
+            // Tween shader property
+            sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+
+            i++;
+        }
+
+        // Disable cursor
+        sequence.Play().OnComplete(() =>
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        });
+    }
+
+
+
     private void OnKeyE()
     {
         if (isHovered && !isInteracted)
@@ -150,27 +184,28 @@ public class QuestItem : MonoBehaviour
 
 
         }
-        else if (isInteracted)
-        {
-            // Toggle isInteracted
-            isInteracted = !isInteracted;
+    }
 
-            // Toggle camera target
-            Transform newTarget = player.cameraUtility.cameraTarget;
-            vcam.Follow = newTarget;
-            vcam.LookAt = newTarget;
+    private void OnKeyEsc()
+    {
+        // Toggle isInteracted
+        isInteracted = !isInteracted;
 
-            // Toggle camera rotate speed
-            vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = originalCameraSpeed;
-            vcam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = originalCameraSpeed;
-            player.playerInput.InputActions.Enable();
+        // Toggle camera target
+        Transform newTarget = player.cameraUtility.cameraTarget;
+        vcam.Follow = newTarget;
+        vcam.LookAt = newTarget;
 
-            // Toggle post processing volume
-            postProcessingVolume.SetActive(false);
+        // Toggle camera rotate speed
+        vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = originalCameraSpeed;
+        vcam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = originalCameraSpeed;
+        player.playerInput.InputActions.Enable();
 
-            // Toggle camera distance
-            DOTween.To(() => targetCameraDistance, x => targetCameraDistance = x, originalCameraDistance, 0.5f).SetEase(Ease.InOutQuad);
-        }
+        // Toggle post processing volume
+        postProcessingVolume.SetActive(false);
+
+        // Play quest exit sequence
+        PlayQuestExitSequence();
     }
 
 
