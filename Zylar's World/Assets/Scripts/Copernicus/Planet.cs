@@ -12,4 +12,6 @@ public class Planet : MonoBehaviour
     {
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * dampAmount, Space.Self);
     }
+
+
 }

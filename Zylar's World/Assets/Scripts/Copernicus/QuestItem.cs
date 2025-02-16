@@ -37,7 +37,11 @@ public class QuestItem : MonoBehaviour
     void Update()
     {
         // Check if isHovered, apply outline
-        OutlineOnHover();
+        if (!isInteracted)
+        {
+            OutlineOnHover();
+        }
+
 
         // Key E
         if (Input.GetKeyDown(KeyCode.E))
