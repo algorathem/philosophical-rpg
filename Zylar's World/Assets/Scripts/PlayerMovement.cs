@@ -76,7 +76,7 @@ public class PlayerMovemen : MonoBehaviour
         }
 
         inputVector = inputVector.normalized;
-        transform.position += inputVector * playerSpeed * Time.deltaTime;
+        rb.MovePosition(transform.position + inputVector * playerSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)

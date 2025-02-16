@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour
 {
     [SerializeField] private MazeCell mazeCellPrefab;
     [SerializeField] private int mazeWidth;
     [SerializeField] private int mazeDepth;
+    [SerializeField] private int seed;
 
     private MazeCell[,] mazeGrid;
     private Pathfinding pathfinding;
-    private bool isMazeGenerated = false;
+    //private bool isMazeGenerated = false;
     private MazeCell startCell;
     private MazeCell goalCell;
 
     void Start()
     {
+        Random.InitState(seed);
         mazeGrid = new MazeCell[mazeWidth, mazeDepth];
 
         // Instantiate maze cells
@@ -24,48 +27,51 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int z = 0; z < mazeDepth; z++)
             {
-                mazeGrid[x, z] = Instantiate(mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity);
+                mazeGrid[x, z] = Instantiate(mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity, transform);
+                mazeGrid[x, z].transform.localPosition = new Vector3(x, 0, z);
             }
         }
 
         // Generate the maze after cells are created
         GenerateMaze(null, mazeGrid[0, 0]);
 
-        // Initialize pathfinding
-        pathfinding = new Pathfinding(mazeGrid, mazeWidth, mazeDepth);
+        GetComponent<NavMeshSurface>().BuildNavMesh();
 
-        // Set start and goal cells
-        startCell = mazeGrid[0, 0];  // Example starting point
-        goalCell = mazeGrid[mazeWidth - 1, mazeDepth - 1];  // Example goal point
+        //// Initialize pathfinding
+        //pathfinding = new Pathfinding(mazeGrid, mazeWidth, mazeDepth);
 
-        // Mark maze as generated
-        isMazeGenerated = true;
+        //// Set start and goal cells
+        //startCell = mazeGrid[0, 0];  // Example starting point
+        //goalCell = mazeGrid[mazeWidth - 1, mazeDepth - 1];  // Example goal point
+
+        //// Mark maze as generated
+        //isMazeGenerated = true;
     }
 
-    void Update()
-    {
-        // Wait for 'P' key press to start pathfinding
-        if (isMazeGenerated && Input.GetKeyDown(KeyCode.P) && startCell != null && goalCell != null)
-        {
-            List<MazeCell> path = pathfinding.FindPath(startCell, goalCell);
+    //void Update()
+    //{
+    //    // Wait for 'P' key press to start pathfinding
+    //    if (isMazeGenerated && Input.GetKeyDown(KeyCode.P) && startCell != null && goalCell != null)
+    //    {
+    //        List<MazeCell> path = pathfinding.FindPath(startCell, goalCell);
 
-            if (path != null)
-            {
-                foreach (MazeCell cell in path)
-                {
-                    // Change the color of the path cells
-                    cell.GetComponent<Renderer>().material.color = Color.green;
-                }
-            }
-            else
-            {
-                Debug.Log("No path found!");
-            }
+    //        if (path != null)
+    //        {
+    //            foreach (MazeCell cell in path)
+    //            {
+    //                // Change the color of the path cells
+    //                cell.GetComponent<Renderer>().material.color = Color.green;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("No path found!");
+    //        }
 
-            // Reset flag to prevent multiple pathfinding starts
-            isMazeGenerated = false;
-        }
-    }
+    //        // Reset flag to prevent multiple pathfinding starts
+    //        isMazeGenerated = false;
+    //    }
+    //}
 
     void OnDrawGizmos()
     {
@@ -115,8 +121,8 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
     {
-        int x = (int)currentCell.transform.position.x;
-        int z = (int)currentCell.transform.position.z;
+        int x = (int)currentCell.transform.localPosition.x;
+        int z = (int)currentCell.transform.localPosition.z;
 
         if (x + 1 < mazeWidth)
         {
@@ -163,28 +169,28 @@ public class MazeGenerator : MonoBehaviour
     {
         if (previousCell == null) return;
 
-        if (previousCell.transform.position.x < currentCell.transform.position.x)
+        if (previousCell.transform.localPosition.x < currentCell.transform.localPosition.x)
         {
             previousCell.ClearRightWall();
             currentCell.ClearLeftWall();
             return;
         }
 
-        if (previousCell.transform.position.x > currentCell.transform.position.x)
+        if (previousCell.transform.localPosition.x > currentCell.transform.localPosition.x)
         {
             previousCell.ClearLeftWall();
             currentCell.ClearRightWall();
             return;
         }
 
-        if (previousCell.transform.position.z < currentCell.transform.position.z)
+        if (previousCell.transform.localPosition.z < currentCell.transform.localPosition.z)
         {
             previousCell.ClearFrontWall();
             currentCell.ClearBackWall();
             return;
         }
 
-        if (previousCell.transform.position.z > currentCell.transform.position.z)
+        if (previousCell.transform.localPosition.z > currentCell.transform.localPosition.z)
         {
             previousCell.ClearBackWall();
             currentCell.ClearFrontWall();
