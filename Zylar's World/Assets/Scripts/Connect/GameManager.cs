@@ -229,7 +229,8 @@ public class FlowPuzzle : MonoBehaviour
         }
 
         Debug.Log("You win!");
-        SceneManager.LoadScene("Temp Overworld");
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        SceneManager.LoadScene("PlatosCave");
     }
 
     Vector2Int ConvertWorldToGrid(Vector3 worldPosition)

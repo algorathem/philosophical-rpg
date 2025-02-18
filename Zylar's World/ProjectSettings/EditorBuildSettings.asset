@@ -5,19 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 5da6b034b0e1b224bbc1b1ed32f244bd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PlayerMovement.unity
     guid: 748bb8a0ab35a5b4bb2a6f6a21965090
   - enabled: 1
     path: Assets/Scenes/Ancient/BrokenStairs.unity
     guid: caedb8b0bd97a68438747452334be34b
-  - enabled: 0
-    path: Assets/Scenes/Connect.unity
-    guid: 511ae1fcb645ade4485476794b92055b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Medival/Temp Overworld.unity
     guid: b2e5693c87748c346a58cd5d9b351fde
   m_configObjects: {}
