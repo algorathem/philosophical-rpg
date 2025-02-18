@@ -7,17 +7,23 @@ TagManager:
   - Ground
   - MovableObject
   - Interactable
+  - Dot
+  - Grid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PuzzleGrid
   - Water
   - UI
   - Environment
   - GroundCheck
   - MovableObject
   - ReceiveShadow
+  - Camera
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -1,27 +1,28 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine.SceneManagement;
 
 public class FlowPuzzle : MonoBehaviour
 {
-    public GameObject cellPrefab; // Prefab for each cell
-    public GameObject dotPrefab; // Prefab for the colored dots
-    public LineRenderer pathPrefab; // Prefab for path lines
-    public int gridSize = 6; // Grid size (e.g., 6x6)
+    public GameObject cellPrefab;
+    public GameObject dotPrefab;
+    public LineRenderer pathPrefab;
+    public int gridSize = 6;
     public List<DotPair> dotPairsConfig;
 
-    private Transform[,] grid; // 2D array to hold the grid cells
-    private Dictionary<Color, List<Vector2Int>> dotPairs; // Stores positions of paired dots
-    private Dictionary<Color, LineRenderer> paths; // Stores paths for each color
-    private Dictionary<Color, Stack<Vector2Int>> pathHistories; // Stack to track path history
-    private Dictionary<Color, bool> pairCompleted; // Tracks if each pair is completed
-    private bool[,] cellOccupied; // Tracks if a cell is occupied by a path
-    private Color activeColor = Color.clear; // Currently selected dot color
-    private List<Vector2Int> currentPath; // Current path being drawn
+    private Transform[,] grid;
+    private Dictionary<Color, List<Vector2Int>> dotPairs;
+    private Dictionary<Color, LineRenderer> paths;
+    private Dictionary<Color, Stack<Vector2Int>> pathHistories;
+    private Dictionary<Color, bool> pairCompleted;
+    private bool[,] cellOccupied;
+    private Color activeColor = Color.clear;
+    private List<Vector2Int> currentPath;
     private Camera mainCamera;
 
-    [SerializeField] private AudioClip soundBeep;
-    [SerializeField] private AudioClip soundBoom;
+    public Vector3 spawnOrigin = new Vector3(10f, 0f, 10f);
+    public Material dotMaterial;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class FlowPuzzle : MonoBehaviour
             Vector2Int cellPosition = GetCellUnderMouse();
             if (cellPosition != -Vector2Int.one && IsDot(cellPosition, out Color dotColor))
             {
+                Debug.Log(dotColor.ToString());
                 StartPath(dotColor, cellPosition);
             }
         }
@@ -58,39 +60,19 @@ public class FlowPuzzle : MonoBehaviour
         {
             EndPath();
         }
-
-        // Reset the game when "R" is pressed
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetGame();
-        }
-
-        // Exit Game when "F" is pressed
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SceneManager.LoadScene("BrokenStairs");
-        }
     }
 
     void GenerateGrid()
     {
-        float cellSize = 1.0f; // Size of each grid cell
-        Vector2 gridOrigin = new Vector2(-gridSize / 2f, -gridSize / 2f); // Center the grid on the screen
+        float cellSize = 1.0f;
 
         for (int x = 0; x < gridSize; x++)
         {
             for (int y = 0; y < gridSize; y++)
             {
-                // Instantiate grid cell
                 GameObject cell = Instantiate(cellPrefab, transform);
-
-                // Set the cell's position
-                cell.transform.position = new Vector3(gridOrigin.x + x * cellSize, gridOrigin.y + y * cellSize, 0);
-
-                // Optional: Scale the cell (ensure consistent size)
-                cell.transform.localScale = new Vector3(cellSize, cellSize, 1);
-
-                // Store the cell in the grid array
+                cell.transform.position = spawnOrigin + new Vector3(x * cellSize, y * cellSize, 0);
+                cell.transform.rotation = Quaternion.Euler(0, 0, 0);
                 grid[x, y] = cell.transform;
             }
         }
@@ -111,13 +93,11 @@ public class FlowPuzzle : MonoBehaviour
             dotPairs[color] = new List<Vector2Int>();
             pairCompleted[color] = false;
             pathHistories[color] = new Stack<Vector2Int>();
-            Debug.Log($"Adding new dot pair for color: {color}");
         }
 
         dotPairs[color].Add(pos1);
         dotPairs[color].Add(pos2);
 
-        // Instantiate dots
         PlaceDot(color, pos1);
         PlaceDot(color, pos2);
     }
@@ -125,42 +105,42 @@ public class FlowPuzzle : MonoBehaviour
     void PlaceDot(Color color, Vector2Int position)
     {
         GameObject dot = Instantiate(dotPrefab, transform);
-        dot.transform.position = grid[position.x, position.y].position + new Vector3(0, 0, -0.1f); ;
-        dot.GetComponent<SpriteRenderer>().color = color;
+        dot.transform.position = spawnOrigin + new Vector3(position.x, position.y, 0.0f);
+
+        MeshRenderer meshRenderer = dot.GetComponent<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = dotMaterial;
+            meshRenderer.material.color = color;
+        }
+        else
+        {
+            Debug.LogError("MeshRenderer missing on dot prefab! Ensure the sphere has a MeshRenderer.");
+        }
     }
 
     void StartPath(Color dotColor, Vector2Int startCell)
     {
         if (paths.ContainsKey(dotColor))
         {
-            // Clear the existing path
-            LineRenderer existingPath = paths[dotColor];
-            Destroy(existingPath.gameObject);
+            Destroy(paths[dotColor].gameObject);
             paths.Remove(dotColor);
-
-            // Mark all cells in the path as unoccupied
-            if (pathHistories.ContainsKey(dotColor))
+        }
+        if (pathHistories.ContainsKey(dotColor))
+        {
+            // Reset all occupied cells before clearing path history
+            foreach (Vector2Int cell in pathHistories[dotColor])
             {
-                Stack<Vector2Int> history = pathHistories[dotColor];
-                while (history.Count > 0)
-                {
-                    Vector2Int cell = history.Pop();
-                    cellOccupied[cell.x, cell.y] = false;
-                }
+                cellOccupied[cell.x, cell.y] = false;
             }
 
-            // Reset the completion status for this pair
+            pathHistories[dotColor].Clear();
             pairCompleted[dotColor] = false;
         }
-
-        // Start a new path
         activeColor = dotColor;
         currentPath = new List<Vector2Int> { startCell };
-
-        // Mark the starting cell as occupied
         cellOccupied[startCell.x, startCell.y] = true;
 
-        // Create a new LineRenderer for this color
         if (!paths.ContainsKey(dotColor))
         {
             LineRenderer newPath = Instantiate(pathPrefab, transform);
@@ -170,7 +150,6 @@ public class FlowPuzzle : MonoBehaviour
             paths[dotColor] = newPath;
         }
 
-        // Initialize the history stack for this color
         if (!pathHistories.ContainsKey(dotColor))
         {
             pathHistories[dotColor] = new Stack<Vector2Int>();
@@ -186,10 +165,7 @@ public class FlowPuzzle : MonoBehaviour
 
         // Prevent overlapping or reversing the line
         if (currentPath.Count > 1 && cellPosition == currentPath[currentPath.Count - 2])
-        {
-            Debug.Log("Cannot reverse the line to overlap!");
             return;
-        }
 
         // Allow only up, down, left, right moves
         Vector2Int lastCell = currentPath[currentPath.Count - 1];
@@ -197,92 +173,51 @@ public class FlowPuzzle : MonoBehaviour
         int deltaY = Mathf.Abs(cellPosition.y - lastCell.y);
 
         if (!((deltaX == 1 && deltaY == 0) || (deltaX == 0 && deltaY == 1)))
-        {
-            Debug.Log("Only up, down, left, or right moves are allowed!");
             return;
-        }
 
         // Check if the cell is already occupied or if the path is completed
         if (cellOccupied[cellPosition.x, cellPosition.y] && !currentPath.Contains(cellPosition))
-        {
-            Debug.Log("Cell is already occupied!");
             return;
-        }
 
         // Add the new cell to the path
         currentPath.Add(cellPosition);
         pathHistories[activeColor].Push(cellPosition);
 
-        // Update the LineRenderer
+        // Get the corresponding LineRenderer
         LineRenderer line = paths[activeColor];
+
+        // Ensure the LineRenderer uses world space
+        line.useWorldSpace = true;
         line.positionCount = currentPath.Count;
+
         for (int i = 0; i < currentPath.Count; i++)
         {
             Vector3 position = grid[currentPath[i].x, currentPath[i].y].position;
+            position.z -= 0.05f; // Push it slightly forward to avoid depth overlap
             line.SetPosition(i, position);
         }
-        SoundFXManager.instance.PlaySoundFXClip(soundBeep, transform, 1f);
 
         // Mark the cell as occupied
         cellOccupied[cellPosition.x, cellPosition.y] = true;
+
+        // Debugging to ensure the path is correctly recorded
+        Debug.Log($"Path extended to: {cellPosition} in world position {grid[cellPosition.x, cellPosition.y].position}");
     }
 
     void EndPath()
     {
         if (currentPath.Count > 1)
         {
-            // Check if the path connects the two dots of the same color
             List<Vector2Int> dotPositions = dotPairs[activeColor];
-            if (currentPath.Contains(dotPositions[0]) && currentPath.Contains(dotPositions[1]))
+            if (dotPositions.Count == 2 && currentPath.Contains(dotPositions[0]) && currentPath.Contains(dotPositions[1]))
             {
-                // Check if the path has valid flow between the two dots (e.g., no overlapping paths)
-                if (!pairCompleted[activeColor]) // Only mark as complete if it's not already
-                {
-                    pairCompleted[activeColor] = true; // Mark this pair as completed
-                }
+                pairCompleted[activeColor] = true;
             }
         }
 
-        // Reset active color and path
         activeColor = Color.clear;
         currentPath = null;
-
         CheckWinCondition();
-    }
-
-    void ResetGame()
-    {
-        // Clear all paths
-        foreach (var path in paths.Values)
-        {
-            Destroy(path.gameObject);
-        }
-
-        // Clear paths and histories
-        paths.Clear();
-        pathHistories.Clear();
-
-        // Reset tracking variables
-        pairCompleted.Clear();
-        cellOccupied = new bool[gridSize, gridSize];
-
-        // Clear all existing dots
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag("Dot")) // Ensure you have assigned a "Dot" tag to your dot prefab
-            {
-                Destroy(child.gameObject);
-            }
-        }
-
-        // Reinitialize dot pairs as incomplete
-        dotPairs.Clear(); // Ensure this is cleared before adding the dot pairs again
-        AddDotPair(Color.red, new Vector2Int(0, 0), new Vector2Int(5, 5));
-        AddDotPair(Color.blue, new Vector2Int(1, 1), new Vector2Int(4, 4));
-        AddDotPair(Color.green, new Vector2Int(2, 2), new Vector2Int(3, 3));
-
-        // Reinitialize the grid
-        //GenerateGrid();
     }
 
     void CheckWinCondition()
@@ -290,46 +225,66 @@ public class FlowPuzzle : MonoBehaviour
         foreach (var completed in pairCompleted.Values)
         {
             if (!completed)
-            {
-                return; // Not all pairs are completed
-            }
+                return;
         }
-        SoundFXManager.instance.PlaySoundFXClip(soundBoom, transform, 1f);
 
         Debug.Log("You win!");
+        SceneManager.LoadScene("Temp Overworld");
+    }
+
+    Vector2Int ConvertWorldToGrid(Vector3 worldPosition)
+    {
+        Vector3 localPosition = worldPosition - spawnOrigin;
+        int gridX = Mathf.RoundToInt(localPosition.x);
+        int gridY = Mathf.RoundToInt(localPosition.y);
+
+        gridX = Mathf.Clamp(gridX, 0, gridSize - 1);
+        gridY = Mathf.Clamp(gridY, 0, gridSize - 1);
+        
+        return new Vector2Int(gridX, gridY);
     }
 
     Vector2Int GetCellUnderMouse()
     {
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
+        Camera activeCam = Camera.main;
+        
+        Ray ray = activeCam.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 2f);
 
-        for (int x = 0; x < gridSize; x++)
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100f))
         {
-            for (int y = 0; y < gridSize; y++)
+            if (hit.collider.CompareTag("Dot"))  // If the dot is directly hit
             {
-                if (Vector3.Distance(mouseWorldPosition, grid[x, y].position) < 0.5f)
-                {
-                    return new Vector2Int(x, y);
-                }
+                Debug.Log($"Direct Dot hit detected: {hit.collider.gameObject.name}");
+                return ConvertWorldToGrid(hit.collider.transform.position);
             }
+            if (hit.collider.CompareTag("Grid"))
+            {
+                return ConvertWorldToGrid(hit.point);
+            }
+            
         }
 
-        return -Vector2Int.one; // No valid cell found
+        return -Vector2Int.one;
     }
 
     bool IsDot(Vector2Int cellPosition, out Color dotColor)
     {
+        Debug.Log($"Checking for dot at: {cellPosition}"); // Debugging
+
         foreach (var pair in dotPairs)
         {
             if (pair.Value.Contains(cellPosition))
             {
                 dotColor = pair.Key;
+                Debug.Log($" Dot found at {cellPosition} with color: {dotColor}"); // Confirmation
                 return true;
             }
         }
 
         dotColor = Color.clear;
+        Debug.Log($" No dot found at {cellPosition}"); // Debugging
         return false;
     }
 }
