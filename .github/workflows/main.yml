@@ -1,5 +1,4 @@
 name: Push Notification to Discord
-
 on:
   push:
     branches:
@@ -11,11 +10,11 @@ jobs:
 
     steps:
     - name: Discord Notification
-      uses: raesene/discord-webhook-action@v1.1.0  # Known working version
+      uses: raesene/discord-webhook-action@v1.1.0  
       with:
-        webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}  # Store your webhook in GitHub Secrets
-        username: 'GitSync Buddy'  # Customize the username for the bot
-        avatar_url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'  # Optional: Set an avatar
+        webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}  
+        username: 'GitSync Buddy'  
+        avatar_url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' 
         message: |
           🚨 **New Push to Repository: ${{ github.repository }}**
           💻 **Commit by:** ${{ github.actor }}
