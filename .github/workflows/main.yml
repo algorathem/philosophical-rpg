@@ -1,0 +1,30 @@
+name: Push Notification to Discord
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Push Notification to Discord
+      uses: peter-evans/commit-message-action@v2.2.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Discord Notification
+      uses: Ilshidur/action-discord@v1
+      with:
+        webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}  
+        username: 'GitSync Buddy' 
+        avatar_url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+        message: |
+          🚨 **New Push to Repository: ${{ github.repository }}**
+          💻 **Commit by:** ${{ github.actor }}
+          📜 **Commit Message:** ${{ github.event.head_commit.message }}
+          🌿 **Branch:** ${{ github.ref }}
+          🔗 **Commit Link:** [View Commit](${{ github.event.head_commit.url }})
