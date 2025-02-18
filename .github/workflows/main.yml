@@ -2,6 +2,7 @@ name: Push Notification to Discord
 on:
   push:
     branches:
+      - main
       - development
 
 jobs:
