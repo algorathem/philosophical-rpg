@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Discord Notification
-      uses: raesene/discord-webhook-action@v1.1.0  
+      uses: bessarabov/discord-webhook-action@v1.0.0 
       with:
         webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}  
         username: 'GitSync Buddy'  
