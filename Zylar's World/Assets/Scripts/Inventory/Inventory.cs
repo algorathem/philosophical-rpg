@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
-using static UnityEngine.InputManagerEntry;
 
 public class Inventory : MonoBehaviour
 {
@@ -45,9 +43,7 @@ public class Inventory : MonoBehaviour
         }
         itemsInDictionary += ".";
         Debug.Log(itemsInDictionary);
-
-        AddItem("Wood", 40);
-        AddItem("Stone", 22);
+        inventoryMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,12 +55,12 @@ public class Inventory : MonoBehaviour
             {
                 inventoryMenu.SetActive(false);
                 mouse.EmptySlot();
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 inventoryMenu.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                //Cursor.lockState = CursorLockMode.Confined;
                 RefreshInventory();
             }
         }

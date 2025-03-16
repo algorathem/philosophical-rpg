@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Ancient/BrokenStairs.unity
     guid: caedb8b0bd97a68438747452334be34b
   - enabled: 1
-    path: Assets/Scenes/Medival/Temp Overworld.unity
+    path: Assets/Scenes/Medival/Church.unity
     guid: b2e5693c87748c346a58cd5d9b351fde
   m_configObjects: {}

@@ -60,7 +60,7 @@ public class NumberBox : MonoBehaviour
 
     public bool IsEmpty()
     {
-        return index == 15; // Element 15 is the blank space
+        return index == 16; // Element 15 is the blank space
     }
 
     private void HighlightEmptyPiece()
