@@ -198,6 +198,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 7
   jumpingForce: 6
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  rotationSpeed: 100
+  cameraTransform: {fileID: 0}
 --- !u!114 &98308302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +214,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963cd20a076afdd42af2b396cb5dae16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &356618061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356618063}
+  - component: {fileID: 356618062}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &356618062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356618061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fca5234296c4354c8d93bf00261e0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &356618063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356618061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.54999995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &358615707 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3793463922551401786, guid: c8e5b2b5ca3819d4b8dd89834e3b0d86,
@@ -900,3 +948,4 @@ SceneRoots:
   - {fileID: 1357860436}
   - {fileID: 98308299}
   - {fileID: 1544066310}
+  - {fileID: 356618063}
