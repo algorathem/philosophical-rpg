@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Medival/Church.unity
     guid: b2e5693c87748c346a58cd5d9b351fde
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 12bb8a0c1e9e9f245bbaac0cecbfaf96
+  - enabled: 1
+    path: Assets/Scenes/Ending1.unity
+    guid: 28f462919b29a40438e486e4bf639b8c
   m_configObjects: {}

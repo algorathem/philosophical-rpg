@@ -69,7 +69,7 @@ GAME OVER
 Scientists fail to recognize Zylar as an intelligent being, mistaking them for a mutated animal. They perish in the experiments, their potential never realized.
 
 An Abruptly Ended Journey
-<<loadScene "BrokenStairs">> 
+<<loadScene "Ending1">> 
 ===
 title: NextNode
 position: -36,111
