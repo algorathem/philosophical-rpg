@@ -8,7 +8,7 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 public class Mouse : MonoBehaviour
 {
     public GameObject mouseItemUI;
-    public Image mouseCursor;
+    //public Image mouseCursor;
     public ItemSlotInfo itemSlot;
     public Image itemImage;
     public TextMeshProUGUI stacksText;
@@ -22,12 +22,12 @@ public class Mouse : MonoBehaviour
         transform.position = Input.mousePosition;
         if (Cursor.lockState == CursorLockMode.Locked)
         {
-            mouseCursor.enabled = false;
+            //mouseCursor.enabled = false;
             mouseItemUI.SetActive(false);
         }
         else
         {
-            mouseCursor.enabled = true;
+            //mouseCursor.enabled = true;
 
             if (itemSlot.item != null)
             {
