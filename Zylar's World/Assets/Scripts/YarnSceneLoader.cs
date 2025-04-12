@@ -8,20 +8,14 @@ public class YarnSceneLoader : MonoBehaviour
     [YarnCommand("loadScene")]
     public static void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    [YarnCommand("fadeAndLoad")]
-    public static void FadeAndLoad(string sceneName)
-    {
-        SceneFader fader = GameObject.FindObjectOfType<SceneFader>();
-        if (fader != null)
+        if (SceneController.instance != null)
         {
-            fader.StartCoroutine(fader.FadeOutAndLoadScene(sceneName));
+            SceneController.instance.LoadSceneByName(sceneName);
         }
         else
         {
-            Debug.LogWarning("SceneFader not found in scene!");
+            Debug.LogWarning("SceneController not found, loading directly.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
     }
 }
