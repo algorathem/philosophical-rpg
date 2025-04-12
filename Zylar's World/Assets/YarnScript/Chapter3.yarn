@@ -4,6 +4,25 @@ position: 800, 900
 Narrative: "From the shadows, an age of understanding begins. Knowledge once bound to reason alone now intertwines with the divine mysteries. The old ways fade and a new light emerges, one that promises salvation through faith. The whispers of ancient wisdom echo into a world where the soul seeks not just truth, but the divine. The age of reason moves into the age of grace, and the world begins anew."
 ===
 title: Chapter3_01
+position: 600, 900
+---
+Immortal: "Do you know what you're looking at?"
+
+Zylar: "Another riddle, another fragment. What is this supposed to mean? A crime? Or is this just another test to trap me?"
+
+Augustine: "No, traveler, this is not merely a theft. It is a reflection, a window into the restless heart of humanity. This act is not born of hunger, nor of necessity. It is born of a deeper void, a storm that churns within every soul estranged from its Creator."
+
+"You see, we are made to seek. Our hearts yearn for meaning, for purpose, for rest. But when we turn away from God, when we look elsewhere for fulfillment, our restless longing drives us to folly. This theft, this rebellion, it is the shadow of that longing, twisted into a futile grasp for control, for freedom, for something to fill the emptiness."
+
+Zylar: "This world is perplexing. I've been cast into a philosophical dreamscape, far removed from the binary clarity I’m accustomed to. Humans and their choices seem contradictory, their logic tangled in paradoxes. And now, you're suggesting this same storm exists within me? Why would anyone embrace such disarray? If there is a higher force, a God? why allow this chaos, this endless struggle between good and evil? Is this merely an experiment by the scientists, or is there a deeper truth concealed within these contradictions?"
+
+Immortal: "Be patient. Restlessness is not weakness; it is a sign of growth. You are learning to feel, to question. Restless, aren’t you? Follow the path and see what lies ahead. Only then will you find your answer."
+
+Augustine: "Evil exists because we are free to choose, and in our freedom, we often stumble. I stumbled. I wanted truth, but I was not ready to embrace it.”
+<<jump Chapter3_dialogue>>
+===
+
+title: Chapter3_dialogue
 position: 800, 900
 ---
 <<declare $indulgence = 0>>
@@ -29,17 +48,17 @@ Collect jewelry?
 title: Chapter3_02_choice
 position: 800, 900
 ---
-
--> "I'll stay where I am." <<if $indulgence == 3>>
+<<if $indulgence == 3>>
+-> "I'll stay where I am."
     Zylar: "Why pursue uncertainty when I can surround myself with what I know? These things—they don't question me. They're certain, tangible. They're enough… aren't they?"
     <<jump Ending2>>
-    
+<<endif>>
 
+<<if $indulgence < 3>>
 -> "I'll continue exploring."
-    <<if $indulgence < 3 or $indulgence == 3>>
     Zylar: "I don't understand it all yet. But if there is a storm within me, I'll see where it leads."
     <<jump Chapter3_03>>
-    <<endif>>
+<<endif>>
 ===
 
 title: Ending2
@@ -56,4 +75,121 @@ title: Chapter3_03
 position: 800, 900
 ---
 Augustine: "Restlessness is not your enemy, traveler. It is a force that drives us to seek truth, to grow beyond the limits of what we know. I, too, was once restless, driven by a storm within. I searched for meaning in indulgence, rebellion, and fleeting pleasures, yet found only emptiness."
+
+Zylar: "So this storm is inevitable? Is there no way to escape it? How can I quiet it and find peace?"
+
+Augustine: "You do not escape it, nor do you quiet it. Peace does not come by fleeing the storm but by learning to navigate it. It is a guide, not a tormentor. If you reflect, it will lead you toward understanding, toward a greater truth. But without reflection, it can consume you, leading only to despair."
+
+Zylar: "But why does this storm exist at all? If there is truth—if there is a God—why create this struggle between good and evil?"
+
+Augustine: "Evil exists because we are free to choose, and in our freedom, we often stumble. I stumbled, clinging to fleeting desires while turning away from what truly mattered. Even so, the storm within me was not purposeless. It was a call -- a reminder that our hearts are restless until they rest in meaning, in the truth we were made for. Remember this, traveler: the storm within you is not a curse, but a sign you are still seeking. And seeking is the first step toward finding."
+
+Achievement Unlocked: "Restless Journey"
+===
+
+title: Chapter3_puzzle2
+position: 800, 1000
+---
+<<set $spirit to 0>>
+
+Zylar: "I've seen this look before...kindness laced with grief. Humans seem so drawn to this idea of love, but what is it really? A fleeting emotion? Or... something they're willing to suffer for? I don't understand it. Why would anyone give so much, knowing it leads to pain?"
+
+Mary: "Love is not just joy, traveler. It is also a sacrifice. To love is to give, even when it hurts, even when it seems impossible."
+
+Zylar: "But why? Why choose pain when you could avoid it? Isn't that illogical?"
+
+Mary: "Love transcends logic. It binds us to one another. It is not about avoiding pain, but about finding meaning through it. My child was born to save a world that would break him. Yet I loved him still, not in spite of the pain, but because love made the pain worthwhile."
+
+Zylar: "Love sounds like a burden. Is it truly worth the cost?"
+
+Mary: "Love is both the heaviest burden and the greatest gift, for through it, the grace of God flows. It restores what is broken, redeems what is lost, and gives purpose to the wandering soul. You are not beyond its reach, traveler, for you, too, are made for love. I see your struggle, traveler. You walk a path obscured by doubt, following a guide whose motives are unclear, seeking something you cannot yet grasp. The weight of confusion clouds your way, yet God's grace abides within you, offering strength and clarity."
+
+Mary: "I bless you, child, with the light of divine grace. May it grant you the courage to question what binds you, the wisdom to discern what is true, and the strength to walk in freedom. By God’s mercy, may you find purpose, guided not by blind paths, but by the truth revealed to your heart"
+
+System: "You have obtained the Shard of Clarity, a fragment of insight that allows you to resist external control and forge your own path."
+<<set $spirit += 1>> 
+
+Zylar: "To love is to give... even when it hurts? To find strength in the act of care. I can't measure it, or understand it fully. But maybe... maybe it’s not meant to be understood. Maybe it’s meant to be felt."
+
+Zylar: "I've spent so long looking for answers in reason alone, trying to force my way forward. But maybe... maybe growth isn’t just about understanding—it’s about feeling, forgiving, and... loving."
+===
+
+title: Chapter3_04
+position: 800, 1000
+---
+Three truth One lie: "which one is not correct?"
+-> "Aquinas argued that both reason and faith are necessary to grasp divine truth."
+    <<jump AquinasHint>>
+-> "Aquinas believed that truth is unified, meaning both reason and revelation ultimately lead to the same truth."
+    <<jump AquinasHint>>
+-> "Aquinas taught that the natural world reflects the divine order."
+    <<jump AquinasHint>>
+-> "Aquinas argued that war is inherently evil and can never be justified."
+    "Correct! Aquinas actually developed the concept of *just war*, not all wars are evil."
+    <<jump AquinasEntrance >>
+===
+
+title: AquinasHint
+position: 800, 1000
+---
+Three truth One lie: "That's not correct, find some hints hiden here and try again later."
+
+===
+title: AquinasEntrance
+position: 800, 1000
+---
+Aquinas: "You have done well to untangle the threads of reason and faith, traveler. Many struggle to see that they are not enemies but companions in the search for truth. Tell me, what troubles your mind?"
+-> "How can logic lead to faith?"
+    <<jump question1>>
+-> "Why do humans seek to reconcile the material and the divine?"
+    <<jump question2>>
+-> "Can war ever be justified?"
+    <<jump question3>>
+===
+
+title: question1
+position: 800, 1000
+---
+Aquinas: "Logic is the foundation, but faith builds the cathedral. Reason shows us the door, but faith gives us the courage to walk through it."
+
+"Anyother questions?"
+-> "Why do humans seek to reconcile the material and the divine?"
+    <<jump question2>>
+-> "Can war ever be justified?"
+    <<jump question3>>
+-> "I understand now"
+    <<jump Chapter3_end>>
+===
+title: question2
+position: 800, 1000
+---
+Aquinas:  "To know the material is to glimpse the shadow of the divine. Aristotle taught us the ways of nature; Christianity reveals the source of its order."
+
+"Anyother questions?"
+-> "How can logic lead to faith?"
+    <<jump question1>>
+-> "Can war ever be justified?"
+    <<jump question3>>
+-> "I understand now"
+    <<jump Chapter3_end>>
+===
+title: question3
+position: 800, 1000
+---
+Aquinas:  "War is a grave matter, and yet there are conditions under which it may be just. For war to be moral, it must serve a rightful authority, address a just cause, and be waged with right intentions. Without these, it is but chaos and destruction."
+
+"Anyother questions?"
+-> "How can logic lead to faith?"
+    <<jump question1>>
+-> "Why do humans seek to reconcile the material and the divine?"
+    <<jump question2>>
+-> "I understand now"
+    <<jump Chapter3_end>>
+===
+
+title: Chapter3_end
+position: 800, 1000
+---
+Aquinas: "Traveler, your journey is far from over. Seek not only answers but the courage to ask better questions. Go now, and may your path be illuminated."
+
 ===
