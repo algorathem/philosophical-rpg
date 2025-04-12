@@ -1,0 +1,8 @@
+﻿title: AbruptEnd
+---
+Immortal: "I am sorry we have to end like this. Start over, and I will be waiting for you."
+
+-> Start over
+    Immortal: "Very well. Good luck..." 
+    <<loadScene "Start">>
+===
