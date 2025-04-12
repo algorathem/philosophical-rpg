@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveShader
+  m_Name: Uranus
   m_Shader: {fileID: -6465566751694194690, guid: 467c03ace06b62f47b114775f509e296,
     type: 3}
   m_Parent: {fileID: 0}
@@ -63,6 +63,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.2509804, g: 0.8784314, b: 0.8156863, a: 1}
     - _GlowColor: {r: 1.0890259, g: 3.9999995, b: 0, a: 1}
   m_BuildTextureStacks: []
