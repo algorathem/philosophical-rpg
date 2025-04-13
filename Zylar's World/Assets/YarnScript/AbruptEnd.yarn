@@ -5,4 +5,7 @@ Immortal: "I am sorry we have to end like this. Start over, and I will be waitin
 -> Start over
     Immortal: "Very well. Good luck..." 
     <<loadScene "Start">>
+-> End the game
+    Immortal: "We will meet again..." 
+    <<loadScene "StartMenu">>
 ===
