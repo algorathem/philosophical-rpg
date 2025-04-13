@@ -119,7 +119,13 @@ public class QuestItem : MonoBehaviour
         foreach (GameObject obj in dissolveObjects)
         {
             // Tween shader property
-            sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(-1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+            Material mat = obj.GetComponent<Renderer>().material;
+            if (mat.HasProperty("_CutoffHeight"))
+            {
+                sequence.Insert(0.35f + i * 0.1f, mat.DOFloat(-1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+            }
+
+            //sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(-1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
 
             i++;
         }
@@ -145,7 +151,13 @@ public class QuestItem : MonoBehaviour
         foreach (GameObject obj in dissolveObjects)
         {
             // Tween shader property
-            sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+            Material mat = obj.GetComponent<Renderer>().material;
+            if (mat.HasProperty("_CutoffHeight"))
+            {
+                sequence.Insert(0.35f + i * 0.1f, mat.DOFloat(1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
+            }
+
+            //sequence.Insert(0.35f + i * 0.1f, obj.GetComponent<Renderer>().material.DOFloat(1f, "_CutoffHeight", 0.5f).SetEase(Ease.InOutQuad));
 
             i++;
         }

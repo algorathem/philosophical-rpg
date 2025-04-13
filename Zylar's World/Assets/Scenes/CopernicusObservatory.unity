@@ -244,7 +244,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 1.1
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 0.9
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 0.3
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -985,7 +985,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 1.5
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 1.3
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 1.7
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -2307,7 +2307,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 0.5
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -2502,7 +2502,7 @@ Transform:
   m_GameObject: {fileID: 1552947104}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2594,7 +2594,7 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 1979470466}
   targetOrbitRadius: 0.7
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
   isSun: 0
   isPlacedCorrectly: 0
@@ -2851,7 +2851,7 @@ Transform:
   m_GameObject: {fileID: 1979470465}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2943,10 +2943,10 @@ MonoBehaviour:
   outlineWidth: 5
   orbitCenter: {fileID: 2135291241}
   targetOrbitRadius: 0
-  snapRadiusTolerance: 1
+  snapRadiusTolerance: 0.2
   snapDuration: 0.3
-  isSun: 1
-  isPlacedCorrectly: 1
+  isSun: 0
+  isPlacedCorrectly: 0
 --- !u!114 &1979470471
 MonoBehaviour:
   m_ObjectHideFlags: 0

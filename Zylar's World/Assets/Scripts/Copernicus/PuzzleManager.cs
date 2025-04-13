@@ -22,11 +22,11 @@ public class PuzzleManager : MonoBehaviour
 
     public void CheckCompletion()
     {
-        int pSize = allPlanets.Count - 1;
+        int pSize = allPlanets.Count;
         int count = 0;
         foreach (var planet in allPlanets)
         {
-            if (planet.isPlacedCorrectly && !planet.isSun)
+            if (planet.isPlacedCorrectly)
             {
                 count++;
             }
@@ -34,7 +34,7 @@ public class PuzzleManager : MonoBehaviour
         Debug.Log(count + "/" + pSize + " Completed");
         foreach (var planet in allPlanets)
         {
-            if (!planet.isPlacedCorrectly && !planet.isSun)
+            if (!planet.isPlacedCorrectly)
             {   
 
                 Debug.Log("Puzzle not yet complete...");
