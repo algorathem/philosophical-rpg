@@ -1,0 +1,71 @@
+﻿title: Machiavelli
+---
+Machiavelli: "Power and morality are seldom allies. Can you navigate the labyrinth of politics and virtue?"
+Zylar: "I do not understand. Can power truly thrive without virtue? Does it not lead to ruin?"
+Machiavelli: "Ah, you see the ideal. But power is not guided by ideals—it bends to necessity. Would you sacrifice order for moral purity? A ruler’s task is not to be good, but to be effective."
+
+-> Challenge the necessity of fear
+    <<jump Option1>>
+-> Seek understanding of pragmatism
+    <<jump Option2>>
+-> Confront "the ends justify the means"
+    <<jump Option3>>
+===
+
+title: Option1
+---
+Zylar: "But virtue inspires trust and loyalty. A ruler without it is feared, not respected. Without respect, power is brittle and fleeting."
+
+Machiavelli: "True, respect breeds loyalty, but fear ensures obedience. Trust can waver in hardship; fear, never. Do you think love alone holds armies together? No—it is discipline, enforced by consequence."
+
+Zylar: "But what happens when fear turns to hatred? Does it not poison a kingdom from within? A ruler feared but not loved walks a fragile path."
+
+Machiavelli: (pauses)"Perhaps you are correct, seeker. There is wisdom in tempering fear with respect. Even the cunning must tread carefully when dealing with human hearts. Yet, fear remains the safer bet. What do you say to that?"
+
+Outcome: Machiavelli respects your insight, though he defends his position. 
+Outcome: Zylar earns "Insightful Debater" 
+<<jump Conclusion>>
+===
+
+title: Option2
+---
+Zylar: "Teach me, then. How does one balance these forces? How does a ruler wield virtue selectively?"
+
+Machiavelli: "A wise ruler uses virtue as a mask, not a creed. Generosity, mercy, faithfulness—display them when they serve your purpose, discard them when they do not. Survival demands pragmatism, not purity."
+Zylar: "But is survival worth the cost of abandoning humanity? To live without integrity—what, then, differentiates us from beasts?"
+
+Machiavelli: "You speak of an ideal world. But the real world demands compromise. To lead is to walk a tightrope over chaos. Balance is the only way forward."
+
+Outcome: Machiavelli sees potential in your curiosity 
+Outcome: Zylar earns "Pragmatic Perspective"
+<<jump Conclusion>>
+===
+title: Option3
+---
+Zylar: "You say the end justifies the means. But does that not make any crime excusable if it serves power? Where is the line, then, between ruler and tyrant?"
+
+Machiavelli: "A tyrant is but a failed ruler, seeker. Success redeems all. A kingdom at peace, even built on blood, is preferable to one consumed by endless strife."
+
+Zylar: "And when that peace crumbles, as it inevitably will under such weight, who answers for the blood spilled? Does your philosophy not sow the seeds of its own destruction?"
+
+Machiavelli: (pauses, contemplative)
+"Perhaps you are wiser than you appear. Power wielded without care often consumes itself. But tell me this—if avoiding destruction requires sacrifice, would you have the courage to make it?"
+
+Zylar: "I would rather build a world where such sacrifices are unnecessary. Humanity rises not through domination, but through understanding."
+
+Outcome: Machiavelli, though unconvinced, admires your resolve
+Outcome: Zylar challenges Machiavelli’s worldview, earning "Moral Visionary"
+<<jump Conclusion>>
+===
+
+title: Conclusion
+---
+Machiavelli: "Perhaps you are correct to question me. Or perhaps my path is the only one that ensures survival. Either way, seeker, you have proven yourself worthy of this knowledge."
+
+Zylar: "Knowledge is only the beginning. What matters is how it is used."
+
+Machiavelli: "Spoken like a true leader. Take this—my manuscripts. May they guide you, or warn you, as you shape the world in your own image."
+
+Outcome: Zylar receives The Prince manuscript, representing mastery of political strategy. They leave with a deeper understanding of the complexities of power and the enduring tension between morality and pragmatism.
+Outcome: The pressure of unknown from the Immortal seems less overwhelming now, perhaps you will go on a different path.
+===
