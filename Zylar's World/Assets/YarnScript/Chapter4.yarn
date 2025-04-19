@@ -1,8 +1,12 @@
 ﻿title: Machiavelli
 ---
 Machiavelli: "Power and morality are seldom allies. Can you navigate the labyrinth of politics and virtue?"
+
 Zylar: "I do not understand. Can power truly thrive without virtue? Does it not lead to ruin?"
+
 Machiavelli: "Ah, you see the ideal. But power is not guided by ideals—it bends to necessity. Would you sacrifice order for moral purity? A ruler’s task is not to be good, but to be effective."
+
+Machiavelli: "What's your opinion?"
 
 -> Challenge the necessity of fear
     <<jump Option1>>
@@ -20,7 +24,8 @@ Machiavelli: "True, respect breeds loyalty, but fear ensures obedience. Trust ca
 
 Zylar: "But what happens when fear turns to hatred? Does it not poison a kingdom from within? A ruler feared but not loved walks a fragile path."
 
-Machiavelli: (pauses)"Perhaps you are correct, seeker. There is wisdom in tempering fear with respect. Even the cunning must tread carefully when dealing with human hearts. Yet, fear remains the safer bet. What do you say to that?"
+Machiavelli: (pauses)
+Machiavelli: "Perhaps you are correct, seeker. There is wisdom in tempering fear with respect. Even the cunning must tread carefully when dealing with human hearts. Yet, fear remains the safer bet. What do you say to that?"
 
 Outcome: Machiavelli respects your insight, though he defends his position. 
 Outcome: Zylar earns "Insightful Debater" 
