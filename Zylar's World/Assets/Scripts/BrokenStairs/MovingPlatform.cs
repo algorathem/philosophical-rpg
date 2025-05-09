@@ -98,7 +98,7 @@ public class MovingPlatform : MonoBehaviour
                 Destroy(rotationHelper.gameObject);
             }
 
-            playerTransform.localScale = new Vector3(1f, 1f, 1f);
+            playerTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
             completeJourney = true; // Flag the platform to return to its original position
         }

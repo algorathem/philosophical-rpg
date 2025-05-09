@@ -20,6 +20,8 @@ public class Puzzle15_3D : MonoBehaviour
     private Vector3 originalPlayerPosition;
     private Vector2 offset = new Vector2(0, 0f);
 
+    public GameObject interactionPrompt;
+
     void Start()
     {
         if (sprites.Length > 0)
@@ -33,11 +35,18 @@ public class Puzzle15_3D : MonoBehaviour
         {
             Shuffle();
         }
+
+        if (interactionPrompt != null)
+            interactionPrompt.SetActive(false);
     }
 
     void Update()
     {
         HandleInteraction();
+        if (isPuzzleActive)
+        {
+            interactionPrompt.SetActive(false);
+        }
     }
 
     void HandleInteraction()
@@ -45,7 +54,7 @@ public class Puzzle15_3D : MonoBehaviour
         // Check distance between player and puzzle
         float distance = Vector3.Distance(player.position, transform.position);
 
-        // Press 'F' to zoom in and start the puzzle
+        /*
         if (distance <= interactionDistance && Input.GetKeyDown(KeyCode.F))
         {
             print("Puzzle Interacted");
@@ -57,6 +66,30 @@ public class Puzzle15_3D : MonoBehaviour
             {
                 ExitPuzzleMode();
             }
+        }*/
+
+        if (distance <= interactionDistance && !isPuzzleActive)
+        {
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                EnterPuzzleMode();
+
+                if (interactionPrompt != null)
+                    interactionPrompt.SetActive(false);
+            }
+        }
+        else
+        {
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false); //
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitPuzzleMode();
         }
     }
 

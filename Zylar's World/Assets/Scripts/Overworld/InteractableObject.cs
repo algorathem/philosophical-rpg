@@ -4,7 +4,9 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     public KeyCode interactionKey = KeyCode.F; // Key to interact
-    private bool isPlayerNearby = false;
+    public float interactionRadius = 5.0f;
+
+    public GameObject interactionPrompt;
 
     public Texture2D cursorForCam1;
 
@@ -14,6 +16,7 @@ public class InteractableObject : MonoBehaviour
     public GameObject puzzleManager; // Reference to PuzzleManager
     public CursorTrail trailForCam1;
 
+    public GameObject player;
     void Start()
     {
         // Ensure normal game starts with main camera active
@@ -32,15 +35,43 @@ public class InteractableObject : MonoBehaviour
         // Listen for camera switch events
         cinemachineBrain.m_CameraActivatedEvent.AddListener(OnCameraSwitch);
         trailForCam1.enabled = false;
+
+        if (interactionPrompt != null)
+            interactionPrompt.SetActive(false);
     }
 
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(interactionKey))
+        bool isPlayerNearby = false;
+
+        if (player != null)
         {
-            EnterPuzzleMode();
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            isPlayerNearby = distance <= interactionRadius;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape)) // Press ESC to exit puzzle mode
+
+        if (isPlayerNearby)
+        {
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(true);
+
+            if (Input.GetKeyDown(interactionKey))
+            {
+                EnterPuzzleMode();
+
+                if (interactionPrompt != null)
+                    interactionPrompt.SetActive(false);
+            }
+
+        }
+        else
+        {
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape)) // Press ESC to exit puzzle mode
         {
             ExitPuzzleMode();
         }
@@ -72,21 +103,6 @@ public class InteractableObject : MonoBehaviour
             puzzleManager.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNearby = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNearby = false;
-        }
-    }
     public Camera GetActiveCamera()
     {
         if (puzzleCamera.Priority > mainCamera.Priority)
