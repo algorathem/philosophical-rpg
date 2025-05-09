@@ -6,11 +6,11 @@ position: -23,-764
 <<declare $accessCard = false>>
 <<declare $ScalingAbility = false>>
 
-Narrative: Zylar's pod hurtles toward the unfamiliar planet below, the sound of metal groaning as it succumbs to Earth's atmosphere. Their logical mind computes the inevitable: crash landing. Survival was always a matter of cold equations, and this moment was no different. The pod skims over jagged mountain peaks before plummeting into a dense forest below, shattering on impact. A wave of heat and shock pulses through their body, but Zylar’s mind remains detached.
+Narrative: Zylar's pod hurtles toward the unfamiliar planet below, the sound of metal groaning as it succumbs to Earth's atmosphere. Their logical mind computes the inevitable: crash landing. Survival was always a matter of cold equations, and this moment was no different. The pod skims over jagged mountain peaks before plummeting into a dense forest below, shattering on impact. A wave of heat and shock pulses through their body, but Zylar’s mind remains detached. #line:hurtling
 
-Zylar: "I am Zylar, and I will survive."
+Zylar: "I am Zylar, and I will survive." #line:line1
 
-The crash is sudden, and everything goes black.
+The crash is sudden, and everything goes black. #line:crash
 
 -> Captivity
     <<jump ch1_002>>
