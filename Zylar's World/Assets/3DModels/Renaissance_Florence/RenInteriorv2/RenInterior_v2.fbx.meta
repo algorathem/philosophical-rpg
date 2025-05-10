@@ -1,0 +1,294 @@
+fileFormatVersion: 2
+guid: 3f0215c1b8978c840aa445b7918bd185
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cupbrd_wiron
+    second: {fileID: 2100000, guid: e771f77a3db393c499f9074793e3e543, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LargePot
+    second: {fileID: 2100000, guid: 9a60df8132041834fa5e17478dc92ce2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Logholder
+    second: {fileID: 2100000, guid: d95f8383db175854281d15a3cc4b5b1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Aprons
+    second: {fileID: 2100000, guid: 9006bc8c0a7e21742aea492f00d21d4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BrassConnector
+    second: {fileID: 2100000, guid: 1f0ad1b9665ae4949b2c240b28bbea06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Candle
+    second: {fileID: 2100000, guid: 3e0ab7900a310614ead97548ee283929, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CandlestickBase
+    second: {fileID: 2100000, guid: dc7641907adb8a94dbdf04b31e1a3a3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Cristallo
+    second: {fileID: 2100000, guid: 87e54476b6cd25348aae6324af0aa588, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Cross01
+    second: {fileID: 2100000, guid: cafde04088f415e42a93b84df6f9f619, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CrossEmbed
+    second: {fileID: 2100000, guid: 5299b20c08d2d2546a6e0295de9e6b82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CrossFace
+    second: {fileID: 2100000, guid: 19b7d17d51a96a14dbcb6073f6100111, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Inkwell
+    second: {fileID: 2100000, guid: 2d59d3b05d603584d93f6016bf9f9d5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_IronConnector
+    second: {fileID: 2100000, guid: 8955feb5075e47a498513bb674805a06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Legs
+    second: {fileID: 2100000, guid: ef21a6f24b9f48e4e8f4f7ff14f2aa75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_QuillBase1
+    second: {fileID: 2100000, guid: 6fae5e8ccd6281840ad2a4574def5031, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_QuillTips1
+    second: {fileID: 2100000, guid: f0f7e729fc0679949a4300ce7842b177, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Shutters
+    second: {fileID: 2100000, guid: cbe89caeed6840744891335a5550f160, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_SpectaclesBase
+    second: {fileID: 2100000, guid: 8eb70ea3609a35a498c9b36bf867de4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Tabletop
+    second: {fileID: 2100000, guid: 5a97c54cc628d6041bd62e7dcf88ae06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Thread
+    second: {fileID: 2100000, guid: 56fabfae852418b4cb71160c34174c7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Beams
+    second: {fileID: 2100000, guid: 33a398744e0aa574a8eec8e211b0821e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Ceiling
+    second: {fileID: 2100000, guid: 409945b5ce5b6044bb9724441ab77712, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Doorhandles
+    second: {fileID: 2100000, guid: 2cebd0d168d32404aac854ad098b8b8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Doors
+    second: {fileID: 2100000, guid: 80ae6f004b0effe4785f6e1d9bf16566, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_ExtWall
+    second: {fileID: 2100000, guid: 74719a4c3aaa8f44d8d863759c766593, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Fireplace
+    second: {fileID: 2100000, guid: 1e176d0160688c844b99a0e3bb71dd0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Floor
+    second: {fileID: 2100000, guid: f172bf8a2cad7e74080d0403a659bb09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_Glass
+    second: {fileID: 2100000, guid: a911907c36d2d5c48b5ffda1c6377181, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_IntWalls
+    second: {fileID: 2100000, guid: ba8d35f7afc51d1418b2932759144d85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RenInt_WinFrame
+    second: {fileID: 2100000, guid: a09121a58296b154c877cd6d88b34d20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScrollPaper03
+    second: {fileID: 2100000, guid: dfb6a9cc9aeee9f4d88bb75e24ed907e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sgabello
+    second: {fileID: 2100000, guid: 2a2bc9e9bc7d0094b8a43dbf35040914, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SmallPot_Chainlink
+    second: {fileID: 2100000, guid: 66456cdd92ff3ea44bb8435ca00b2929, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Small_Pot
+    second: {fileID: 2100000, guid: 17cab1c17c3afb54b8cf499e7e685ade, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrestleTable
+    second: {fileID: 2100000, guid: ee8012b5236a19e43ae1f6d538501559, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn3
+    second: {fileID: 2100000, guid: a15dd3d52f945184f90c47380591ddab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cupbrd_walnut
+    second: {fileID: 2100000, guid: 7f4e71eea61f92d45afdea12163804a5, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
