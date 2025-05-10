@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using Yarn.Unity;
 
 public class Puzzle15_3D : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class Puzzle15_3D : MonoBehaviour
     private Vector2 offset = new Vector2(0, 0f);
 
     public GameObject interactionPrompt;
+
+    private DialogueRunner dialogueRunner; // Reference to dialogue runner
+
+    private void Awake()
+    {
+        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+    }
 
     void Start()
     {
@@ -189,6 +197,7 @@ public class Puzzle15_3D : MonoBehaviour
     void OnPuzzleCompleted()
     {
         Debug.Log("Puzzle Complete! Do Action");
+        dialogueRunner.StartDialogue("Chapter3_01");
         ExitPuzzleMode();
     }
 
