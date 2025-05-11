@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 5da6b034b0e1b224bbc1b1ed32f244bd
   - enabled: 1
-    path: Assets/Scenes/PlayerMovement.unity
-    guid: 748bb8a0ab35a5b4bb2a6f6a21965090
+    path: Assets/Scenes/Start.unity
+    guid: 12bb8a0c1e9e9f245bbaac0cecbfaf96
+  - enabled: 1
+    path: Assets/Scenes/Ending1.unity
+    guid: 28f462919b29a40438e486e4bf639b8c
   - enabled: 1
     path: Assets/Scenes/Laboratory.unity
     guid: 4841d61cbfa42574794ae5b2e4bcb995
@@ -18,15 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Ancient/BrokenStairs.unity
     guid: caedb8b0bd97a68438747452334be34b
   - enabled: 1
-    path: Assets/Scenes/PlatosCave.unity
-    guid: 92c7e6d813204e344ba5421fe14e5619
-  - enabled: 1
     path: Assets/Scenes/Medival/Church.unity
     guid: b2e5693c87748c346a58cd5d9b351fde
-  - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: 12bb8a0c1e9e9f245bbaac0cecbfaf96
-  - enabled: 1
-    path: Assets/Scenes/Ending1.unity
-    guid: 28f462919b29a40438e486e4bf639b8c
+  - enabled: 0
+    path: Assets/Scenes/PlayerMovement.unity
+    guid: 748bb8a0ab35a5b4bb2a6f6a21965090
+  - enabled: 0
+    path: Assets/Scenes/PlatosCave.unity
+    guid: 92c7e6d813204e344ba5421fe14e5619
   m_configObjects: {}
