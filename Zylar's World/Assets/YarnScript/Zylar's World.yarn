@@ -14,7 +14,7 @@ Zylar: "I am Zylar, and I will survive." #line:line1
 The crash is sudden, and everything goes black. #line:crash
 
 -> Captivity
-    <<jump ch1_002>>
+    <<loadScene "Laboratory">> 
 ===
 
 title: ch1_002
