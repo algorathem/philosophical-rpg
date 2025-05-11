@@ -8,12 +8,13 @@ position: -23,-764
 
 Narrative: Zylar's pod hurtles toward the unfamiliar planet below, the sound of metal groaning as it succumbs to Earth's atmosphere. Their logical mind computes the inevitable: crash landing. Survival was always a matter of cold equations, and this moment was no different. The pod skims over jagged mountain peaks before plummeting into a dense forest below, shattering on impact. A wave of heat and shock pulses through their body, but Zylar’s mind remains detached. #line:hurtling
 
+<<spawn>>
 Zylar: "I am Zylar, and I will survive." #line:line1
 
 The crash is sudden, and everything goes black. #line:crash
 
 -> Captivity
-    <<jump ch1_002>>
+    <<loadScene "Laboratory">> 
 ===
 
 title: ch1_002
@@ -120,14 +121,18 @@ The Immortal sighs. "Three taps. Three pauses. Three taps. Try again."
 title: SuccessNode
 position: -26,480
 ---
-The tapping resonates through the sterile room, and the humans stop in their tracks. Their excitement is evident—they've recognized the Morse code as a sign of intelligence. They hastily leave the room to report their findings. In their excitement, they drop an access card on the table.
-
-Immortal: "You have succeeded. Your mind is sharp, and your will is strong. Now, you gain the power to scale. Use it wisely, for your journey has only begun. Good luck... in your escape."
-
-Scientists recognize the code and are excited that they find an unknown creature with high intelligence, they are too excited that they hastily leave the room to report and their access card is left behind for Zylar to use.
-
-<<set $ScalingAbility = true>>
-
+The tapping resonates through the sterile room, and the humans stop in their tracks. Their excitement is evident—they've recognized the Morse code as a sign of intelligence. With hurried steps, they leave to report their discovery. In their rush, an access card clatters onto the table, forgotten.
+<<activate "Access Card">>
+<<activate "Interaction Prompt">>
+<<set $accessCard = true>>
+===
+title: UpdatedTutorial
+position: -20, 600
+---
+Immortal: "You have succeeded. Your mind is sharp, and your will is strong. Now, I grant you the power to act—to move, to turn, to break your bounds.
+Use W A S D to move.
+Use Q and E to rotate.
+You have learnt your first step to freedom. Good luck... in your escape."
 ===
 title: ch1_Tutorial01
 position: -20, 600
