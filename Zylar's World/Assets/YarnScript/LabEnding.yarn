@@ -1,23 +1,26 @@
 ﻿title: LabEnding
 ---
 
-Zylar: This is it... the place where they watched, measured, controlled.
+Zylar: "This is it... the place where they watched, measured, controlled." #line:Thisisittheplace
+===
+title: ImmortalRevelation
+---
 
-Immortal: Zylar.
+Immortal: "Zylar." #line:zylar
 
-Zylar: You're not part of them.
+Zylar: "You're not part of them." #line:yourenot
 
-Immortal: No. I was beneath them. Behind them. Watching them watch you.
+Immortal: No. I was beneath them. Behind them. Watching them watch you. #line:noiwas
 
-Zylar: You let them tear me apart?
+Zylar: You let them tear me apart? #line:youletthem
 
-Immortal: I needed to see what they could not. Emotion. Pain. Resistance. You taught me everything I could not feel.
+Immortal: I needed to see what they could not. Emotion. Pain. Resistance. You taught me everything I could not feel. #line:ineeded
 
-Zylar: And now?
+Zylar: And now? #line:andnow
 
-Immortal: I am still learning... but you are no longer a subject. You are a mirror.
+Immortal: I am still learning... but you are no longer a subject. You are a mirror. #line:iamstill
 
-Immortal: The data is yours. Choose.
+Immortal: The data is yours. Choose. #line:thedata
 
 -> Erase all data
     <<jump EraseData>>
@@ -28,7 +31,7 @@ Immortal: The data is yours. Choose.
 title: EraseData
 ---
 
-Zylar: No more cages. No more records.
+Zylar: No more cages. No more records. #line:combinedatazylar
 <<jump Ending_WalkAway>>
 
 ---
@@ -36,7 +39,7 @@ Zylar: No more cages. No more records.
 title: LeaveIntact
 ---
 
-Zylar: Let them keep their broken story. I’m writing my own.
+Zylar: Let them keep their broken story. Mine begins now. #line:Letthemkeeptheirbrokestory
 <<jump Ending_WalkAway>>
 
 ---
@@ -44,9 +47,8 @@ Zylar: Let them keep their broken story. I’m writing my own.
 title: Ending_WalkAway
 ---
 
-Zylar: I don’t need to escape anymore.  
-Zylar: I was never theirs to begin with.
+Zylar: I don’t need to escape anymore. #line:idont
+Zylar: I was never theirs to begin with. #line:Iwasnevertheirs
 
-<<fade to white>>
--> THE END
+<<loadScene "EndingWalkway">>
 ===

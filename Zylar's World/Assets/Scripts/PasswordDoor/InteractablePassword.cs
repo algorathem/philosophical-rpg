@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; //To load a new scene when password is correct
 
 public class InteractablePassword : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class InteractablePassword : MonoBehaviour
     public TextMeshProUGUI feedbackText; // TMP Text for feedback
     public Button submitButton; // Assign a UI Button in Inspector
     public string correctPassword = "1234"; // Set your password
-
+    public string sceneToLoad; //Set scene to load on completion of puzzle
     private bool isPlayerNearby = false;
 
     void Start()
@@ -49,6 +50,7 @@ public class InteractablePassword : MonoBehaviour
     {
         Debug.Log("Correct password entered! Performing action...");
         // Implement an action here (e.g., open a door, reveal an object)
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -695,6 +695,7 @@ MonoBehaviour:
   feedbackText: {fileID: 777848467}
   submitButton: {fileID: 565331884}
   correctPassword: Sub specie aeternitatis
+  sceneToLoad: BackToLab
 --- !u!1 &485295888
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +768,7 @@ MonoBehaviour:
   feedbackText: {fileID: 777848467}
   submitButton: {fileID: 565331884}
   correctPassword: Cogito, Ergo Sum
+  sceneToLoad: BackToLab
 --- !u!1 &565331882
 GameObject:
   m_ObjectHideFlags: 0
