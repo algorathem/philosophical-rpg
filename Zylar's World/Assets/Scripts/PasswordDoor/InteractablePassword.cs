@@ -39,7 +39,7 @@ public class InteractablePassword : MonoBehaviour
         }
         else
         {
-            feedbackText.text = "Incorrect Password. Try Again.";
+            feedbackText.text = "Access denied. Re-enter sequence.";
             passwordInputField.text = ""; // Clear wrong input
             passwordInputField.ActivateInputField();
         }
