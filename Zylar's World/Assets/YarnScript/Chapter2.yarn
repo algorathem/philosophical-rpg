@@ -1,11 +1,11 @@
 title: Chapter2_01
 position: 800, 900
 ---
-Narrative: As Zylar steps through the final door, the sterile laboratory fades into a surreal dreamscape. Marble steps stretch infinitely, bathed in a golden light, signaling the beginning of the Ancient Philosophy Era.
+Narrative: As Zylar steps through the final door, the sterile laboratory fades into a surreal dreamscape. Marble steps stretch infinitely, bathed in a golden light, signaling the beginning of the Ancient Philosophy Era. #line:aszylarsteps
 
-Zylar steps into a surreal dreamscape. Marble steps stretch infinitely upward and downward, their ends lost in a shimmering golden mist. The stairs seem to move subtly, everything here constantly challenges Zylar’s logic and worldview, defying Zylar’s attempts to calculate their path.
+Marble steps stretch infinitely upward and downward, their ends lost in a shimmering golden mist. The stairs seem to move subtly, everything here constantly challenges Zylar’s logic and worldview, defying Zylar’s attempts to calculate their path. #line:marblesteps
 
-Immortal: "You have entered a realm of thought, where logic meets paradox. Here, you will encounter the essence of motion, change, and truth. But beware—truth is rarely simple, and progress often feels infinite."
+Immortal: "You have entered a realm of thought, where logic meets paradox. Here, you will encounter the essence of motion, change, and truth. But beware—truth is rarely simple, and progress often feels infinite." #line:youhaveentered
 ===
 title: Chapter2_02
 position: 800, 900

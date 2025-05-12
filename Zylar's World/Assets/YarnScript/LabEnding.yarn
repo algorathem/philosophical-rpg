@@ -1,0 +1,52 @@
+﻿title: LabEnding
+---
+
+Zylar: This is it... the place where they watched, measured, controlled.
+
+Immortal: Zylar.
+
+Zylar: You're not part of them.
+
+Immortal: No. I was beneath them. Behind them. Watching them watch you.
+
+Zylar: You let them tear me apart?
+
+Immortal: I needed to see what they could not. Emotion. Pain. Resistance. You taught me everything I could not feel.
+
+Zylar: And now?
+
+Immortal: I am still learning... but you are no longer a subject. You are a mirror.
+
+Immortal: The data is yours. Choose.
+
+-> Erase all data
+    <<jump EraseData>>
+-> Leave it intact
+    <<jump LeaveIntact>>
+---
+===
+title: EraseData
+---
+
+Zylar: No more cages. No more records.
+<<jump Ending_WalkAway>>
+
+---
+===
+title: LeaveIntact
+---
+
+Zylar: Let them keep their broken story. I’m writing my own.
+<<jump Ending_WalkAway>>
+
+---
+===
+title: Ending_WalkAway
+---
+
+Zylar: I don’t need to escape anymore.  
+Zylar: I was never theirs to begin with.
+
+<<fade to white>>
+-> THE END
+===

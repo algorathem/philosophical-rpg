@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -807,12 +807,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 73b9eb8b86ab6324d99f55b1b77ca089,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.013
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73b9eb8b86ab6324d99f55b1b77ca089,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.719
+      value: -17.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73b9eb8b86ab6324d99f55b1b77ca089,
         type: 3}
@@ -876,17 +876,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3f0215c1b8978c840aa445b7918bd185,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4749737
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f0215c1b8978c840aa445b7918bd185,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.4749737
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f0215c1b8978c840aa445b7918bd185,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4749737
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f0215c1b8978c840aa445b7918bd185,
         type: 3}
@@ -1074,7 +1074,7 @@ Transform:
   m_GameObject: {fileID: 1138035214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16, y: 0.25, z: -14.12}
+  m_LocalPosition: {x: -0.16, y: 0.25, z: -17.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
