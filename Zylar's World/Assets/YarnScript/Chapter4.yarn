@@ -73,4 +73,6 @@ Machiavelli: "Spoken like a true leader. Take this—my manuscripts. May they gu
 
 Outcome: Zylar receives The Prince manuscript, representing mastery of political strategy. They leave with a deeper understanding of the complexities of power and the enduring tension between morality and pragmatism.
 Outcome: The pressure of unknown from the Immortal seems less overwhelming now, perhaps you will go on a different path.
+<<activate "Spinoza Door">>
+<<activate "Descartes Door">>
 ===
