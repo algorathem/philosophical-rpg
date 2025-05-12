@@ -1,7 +1,7 @@
 ﻿title: LabEnding
 ---
 
-Zylar: "This is it... the place where they watched, measured, controlled." #line:Thisisittheplace
+Zylar: "This is it... the place where they watched, measured, controlled." #line:Thisisittheplace-Zylar
 ===
 title: ImmortalRevelation
 ---
@@ -39,7 +39,7 @@ Zylar: No more cages. No more records. #line:combinedatazylar
 title: LeaveIntact
 ---
 
-Zylar: Let them keep their broken story. Mine begins now. #line:Letthemkeeptheirbrokestory
+Zylar: Let them keep their broken story. Mine begins now. #line:Letthemkeeptheirbrokestory-Zylar
 <<jump Ending_WalkAway>>
 
 ---
@@ -48,7 +48,6 @@ title: Ending_WalkAway
 ---
 
 Zylar: I don’t need to escape anymore. #line:idont
-Zylar: I was never theirs to begin with. #line:Iwasnevertheirs
-
+Zylar: I was never theirs to begin with. #line:Iwasnevertheirs-Zylar
 <<loadScene "EndingWalkway">>
 ===

@@ -230,7 +230,15 @@ public class FlowPuzzle : MonoBehaviour
 
         Debug.Log("You win!");
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        SceneManager.LoadScene("PlatosCave");
+        if (SceneController.instance != null)
+        {
+            SceneController.instance.LoadSceneByName("Church");
+        }
+        else
+        {
+            Debug.LogWarning("SceneController not found, loading directly.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Church");
+        }
     }
 
     Vector2Int ConvertWorldToGrid(Vector3 worldPosition)

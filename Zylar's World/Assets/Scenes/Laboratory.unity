@@ -903,6 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 141190336}
   - component: {fileID: 141190337}
+  - component: {fileID: 141190338}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -944,6 +945,18 @@ MonoBehaviour:
   - id: Interaction Prompt
     gameObject: {fileID: 0}
     textElement: {fileID: 1986189377}
+--- !u!114 &141190338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141190335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7704983ff6945e944b83df51592658be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152125232
 GameObject:
   m_ObjectHideFlags: 0

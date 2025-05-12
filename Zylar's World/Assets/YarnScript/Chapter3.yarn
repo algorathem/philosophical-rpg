@@ -19,6 +19,7 @@ Zylar: "This world is perplexing. I've been cast into a philosophical dreamscape
 Immortal: "Be patient. Restlessness is not weakness; it is a sign of growth. You are learning to feel, to question. Restless, aren’t you? Follow the path and see what lies ahead. Only then will you find your answer." line:bepatient
 
 Augustine: "Evil exists because we are free to choose, and in our freedom, we often stumble. I stumbled. I wanted truth, but I was not ready to embrace it.” line:evilexists
+<<loadScene "Machiavelli’s Gambit">>
 ===
 
 title: Chapter3_dialogue

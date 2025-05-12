@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Medival/Church.unity
     guid: b2e5693c87748c346a58cd5d9b351fde
+  - enabled: 1
+    path: "Assets/Scenes/Reinassance/Machiavelli\u2019s Gambit.unity"
+    guid: 86ddb99b679ef16478a51e8d0715b48a
   - enabled: 0
     path: Assets/Scenes/PlayerMovement.unity
     guid: 748bb8a0ab35a5b4bb2a6f6a21965090
