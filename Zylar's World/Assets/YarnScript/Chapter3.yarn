@@ -1,24 +1,24 @@
 title: Chapter3_00
 position: 800, 900
 ---
-Narrative: "From the shadows, an age of understanding begins. Knowledge once bound to reason alone now intertwines with the divine mysteries. The old ways fade and a new light emerges, one that promises salvation through faith. The whispers of ancient wisdom echo into a world where the soul seeks not just truth, but the divine. The age of reason moves into the age of grace, and the world begins anew."
+Narrative: "From the shadows, an age of understanding begins. Knowledge once bound to reason alone now intertwines with the divine mysteries. The old ways fade and a new light emerges, one that promises salvation through faith. The whispers of ancient wisdom echo into a world where the soul seeks not just truth, but the divine. The age of reason moves into the age of grace, and the world begins anew." #line:fromtheshadows
 ===
 title: Chapter3_01
 position: 600, 900
 ---
-Immortal: "Do you know what you're looking at?"
+Immortal: "Do you know what you're looking at?" #line:doyouknow
 
-Zylar: "Another riddle, another fragment. What is this supposed to mean? A crime? Or is this just another test to trap me?"
+Zylar: "Another riddle, another fragment. What is this supposed to mean? A crime? Or is this just another test to trap me?" line:anotherriddle
 
-Augustine: "No, traveler, this is not merely a theft. It is a reflection, a window into the restless heart of humanity. This act is not born of hunger, nor of necessity. It is born of a deeper void, a storm that churns within every soul estranged from its Creator."
+Augustine: "No, traveler, this is not merely a theft. It is a reflection, a window into the restless heart of humanity. This act is not born of hunger, nor of necessity. It is born of a deeper void, a storm that churns within every soul estranged from its Creator." line:notraveler
 
-"You see, we are made to seek. Our hearts yearn for meaning, for purpose, for rest. But when we turn away from God, when we look elsewhere for fulfillment, our restless longing drives us to folly. This theft, this rebellion, it is the shadow of that longing, twisted into a futile grasp for control, for freedom, for something to fill the emptiness."
+"You see, we are made to seek. Our hearts yearn for meaning, for purpose, for rest. But when we turn away from God, when we look elsewhere for fulfillment, our restless longing drives us to folly. This theft, this rebellion, it is the shadow of that longing, twisted into a futile grasp for control, for freedom, for something to fill the emptiness." line:yousee
 
-Zylar: "This world is perplexing. I've been cast into a philosophical dreamscape, far removed from the binary clarity I’m accustomed to. Humans and their choices seem contradictory, their logic tangled in paradoxes. And now, you're suggesting this same storm exists within me? Why would anyone embrace such disarray? If there is a higher force, a God? why allow this chaos, this endless struggle between good and evil? Is this merely an experiment by the scientists, or is there a deeper truth concealed within these contradictions?"
+Zylar: "This world is perplexing. I've been cast into a philosophical dreamscape, far removed from the binary clarity I’m accustomed to. Humans and their choices seem contradictory, their logic tangled in paradoxes. And now, you're suggesting this same storm exists within me? Why would anyone embrace such disarray? If there is a higher force, a God? why allow this chaos, this endless struggle between good and evil? Is this merely an experiment by the scientists, or is there a deeper truth concealed within these contradictions?" line:thisworld
 
-Immortal: "Be patient. Restlessness is not weakness; it is a sign of growth. You are learning to feel, to question. Restless, aren’t you? Follow the path and see what lies ahead. Only then will you find your answer."
+Immortal: "Be patient. Restlessness is not weakness; it is a sign of growth. You are learning to feel, to question. Restless, aren’t you? Follow the path and see what lies ahead. Only then will you find your answer." line:bepatient
 
-Augustine: "Evil exists because we are free to choose, and in our freedom, we often stumble. I stumbled. I wanted truth, but I was not ready to embrace it.”
+Augustine: "Evil exists because we are free to choose, and in our freedom, we often stumble. I stumbled. I wanted truth, but I was not ready to embrace it.” line:evilexists
 ===
 
 title: Chapter3_dialogue
