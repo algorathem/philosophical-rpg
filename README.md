@@ -1,48 +1,53 @@
-How to Play Locally:
+# Zylar's World - WebGL Build
+
+Welcome to **Zylar's World**! This README provides instructions on how you can play the game locally.
+
+## Requirements:
+- **Python** (version 3.x or above) installed on your computer.
+- A **local development environment** (such as Python's HTTP server) to serve the game files.
+
+## How to Play Locally:
 
 To run the game locally on your computer, you need to use a local HTTP server. This guide explains how to do this using Python.
-Requirements:
 
-    Python (version 3.x or above) installed on your computer.
+### Requirements:
+- **Python** (version 3.x or above) installed on your computer.
 
-Steps to Play Locally:
+## Steps to Play Locally:
 
-    Download or Clone the Repository:
+### 1. **Download or Clone the Repository:**
+   - If you haven't already, download or clone the project repository to your local machine.
 
-        If you haven't already, download or clone the project repository to your local machine.
+### 2. **Navigate to the Game Directory:**
+   - Open the **command prompt** (Windows) or **terminal** (Mac/Linux).
+   - Use the `cd` (change directory) command to go to the folder where the WebGL build files are located (where `index.html` is).
+   
+   Example:
+   ```bash
+   cd path/to/your/webgl/build/folder
+   ```
+### 3. **Start the HTTP Server:**
 
-    Navigate to the Game Directory:
+Once you're in the correct directory, run the following command:
 
-        Open the command prompt (Windows) or terminal (Mac/Linux).
+```bash
+python -m http.server 8000
+```
+This will start a local server at `http://localhost:8000`.
+### 4. **Open the Game in Your Browser:**
+Open your preferred browser (Chrome, Firefox, etc.).
 
-        Use the cd (change directory) command to go to the folder where the WebGL build files are located (where index.html is).
+Go to `http://localhost:8000` in the address bar.
 
-    Example:
+The game should load, and you can start playing!
+## Troubleshooting:
 
-cd path/to/your/webgl/build/folder
+- **CORS Issues**: If you face issues with assets not loading, ensure you're using the local server as described. WebGL requires HTTP or HTTPS to load assets properly.
 
-Start the HTTP Server:
+- **Python Not Installed**: If Python is not installed on your system, [download Python here](https://www.python.org/downloads/).
 
-    Once you're in the correct directory, run the following command:
+- **Port Already in Use**: If port `8000` is occupied by another program, change the port number by running:
 
-        python -m http.server 8000
-
-        This will start a local server at http://localhost:8000.
-
-    Open the Game in Your Browser:
-
-        Open your preferred browser (Chrome, Firefox, etc.).
-
-        Go to http://localhost:8000 in the address bar.
-
-    The game should load, and you can start playing!
-
-Troubleshooting:
-
-    CORS Issues: If you face issues with assets not loading, ensure you're using the local server as described. WebGL requires HTTP or HTTPS to load assets properly.
-
-    Python Not Installed: If Python is not installed on your system, download Python here.
-
-    Port Already in Use: If port 8000 is occupied by another program, change the port number by running:
-
+```bash
 python -m http.server 8080
+```
