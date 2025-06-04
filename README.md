@@ -21,6 +21,11 @@ Then run the following commands:
 git lfs install
 git clone https://github.com/algorathem/philosophical-rpg.git
 ```
+> ❗ If you previously cloned without LFS, run the following in the project directory to fetch large files:
+>
+> ```bash
+> git lfs pull
+> ```
 
 ### 2. **Navigate to the Game Directory:**
    - Open the **command prompt** (Windows) or **terminal** (Mac/Linux).
