@@ -5,16 +5,11 @@ Welcome to **Zylar's World**! This README provides instructions on how you can p
 ## Requirements:
 - **Python** (version 3.x or above) installed on your computer.
 - A **local development environment** (such as Python's HTTP server) to serve the game files.
-- Git LFS installed (required for downloading large asset files properly).
+- **Git LFS** installed (required for downloading large asset files properly).
 
 ## How to Play Locally:
 
 To run the game locally on your computer, you need to use a local HTTP server. This guide explains how to do this using Python.
-
-### Requirements:
-- **Python** (version 3.x or above) installed on your computer.
-
-## Steps to Play Locally:
 
 ### 1. **Clone the Repository with Git LFS:**
 
@@ -25,6 +20,7 @@ Then run the following commands:
 ```bash
 git lfs install
 git clone https://github.com/algorathem/philosophical-rpg.git
+```
 
 ### 2. **Navigate to the Game Directory:**
    - Open the **command prompt** (Windows) or **terminal** (Mac/Linux).
